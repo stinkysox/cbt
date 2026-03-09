@@ -1,5 +1,7 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { siteData } from "@/data/content";
 
 const FloatingShape = ({
   color,
@@ -65,18 +67,18 @@ const HeroSection = () => {
         <FloatingShape color="hsl(25, 90%, 55%)" size={250} initialX="45%" initialY="40%" delay={3} />
       </motion.div>
 
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pointer-events-none">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-sm md:text-base tracking-[0.3em] uppercase text-muted-foreground mb-8 font-body"
         >
-          Creativity Beyond Thoughts
+          {siteData.global.brandName.replace(".", "")}
         </motion.p>
 
         <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.9] tracking-tight mb-8">
-          {words.map((word, i) => (
+          {siteData.hero.words.map((word, i) => (
             <motion.span
               key={word}
               initial={{ opacity: 0, y: 60 }}
@@ -95,21 +97,22 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 1.6 }}
           className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-12 font-body font-light"
         >
-          Your partner in design, video and digital excellence.
+          {siteData.hero.subtitle}
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2 }}
+          className="pointer-events-auto"
         >
-          <a
-            href="#contact"
+          <Link
+            to={siteData.hero.ctaLink}
             className="magnetic-btn inline-flex items-center gap-3 px-8 py-4 rounded-full bg-foreground text-primary-foreground text-base font-medium hover:scale-105 transition-all duration-300 group"
           >
-            Let's Discuss
+            {siteData.hero.ctaText}
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-          </a>
+          </Link>
         </motion.div>
       </div>
 

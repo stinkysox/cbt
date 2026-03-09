@@ -1,6 +1,21 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { siteData } from "@/data/content";
+
+const containerVariants = {
+  hidden: { opacity: 0, x: 30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, delay: 0.3, staggerChildren: 0.1, delayChildren: 0.4 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -9,7 +24,6 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // placeholder
     setFormData({ name: "", email: "", message: "" });
   };
 
@@ -23,10 +37,10 @@ const ContactSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-4">
-            Ready to create a<br /><span className="italic text-gradient">breakthrough</span>?
+            {siteData.contactPage.heroTitleLine1}<br /><span className="italic text-gradient">{siteData.contactPage.heroHighlight}</span>{siteData.contactPage.heroPunctuation}
           </h2>
           <p className="text-muted-foreground font-body text-lg">
-            Let's collaborate and build your brand's future together.
+            {siteData.contactPage.heroDescription}
           </p>
         </motion.div>
 
@@ -38,14 +52,14 @@ const ContactSection = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="glass-card p-8 md:p-10 space-y-8"
           >
-            <h3 className="font-display text-2xl font-bold">Get in Touch</h3>
+            <h3 className="font-display text-2xl font-bold">{siteData.contactPage.sectionTitle}</h3>
             {[
-              { icon: Mail, label: "hello@creativitybeyond.com" },
-              { icon: Phone, label: "+1 (555) 000-0000" },
-              { icon: MapPin, label: "123 Creative Blvd, New York, NY" },
+              { icon: Mail, label: siteData.contact.email },
+              { icon: Phone, label: siteData.contact.phone },
+              { icon: MapPin, label: siteData.contact.address },
             ].map((item) => (
-              <div key={item.label} className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground">
+              <div key={item.label} className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground shrink-0 mt-0.5">
                   <item.icon size={18} />
                 </div>
                 <span className="text-sm font-body text-muted-foreground">{item.label}</span>
@@ -56,16 +70,16 @@ const ContactSection = () => {
           {/* Form */}
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             className="glass-card p-8 md:p-10 space-y-5"
           >
             {[
               { name: "name" as const, label: "Name", type: "text" },
               { name: "email" as const, label: "Email", type: "email" },
             ].map((field) => (
-              <div key={field.name}>
+              <motion.div key={field.name} variants={itemVariants}>
                 <label className="text-xs font-body text-muted-foreground mb-1.5 block">{field.label}</label>
                 <input
                   type={field.type}
@@ -73,9 +87,9 @@ const ContactSection = () => {
                   onChange={(e) => setFormData((p) => ({ ...p, [field.name]: e.target.value }))}
                   className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/50 text-sm font-body text-foreground focus:outline-none focus:border-accent transition-colors"
                 />
-              </div>
+              </motion.div>
             ))}
-            <div>
+            <motion.div variants={itemVariants}>
               <label className="text-xs font-body text-muted-foreground mb-1.5 block">Message</label>
               <textarea
                 rows={4}
@@ -83,13 +97,14 @@ const ContactSection = () => {
                 onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
                 className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/50 text-sm font-body text-foreground focus:outline-none focus:border-accent transition-colors resize-none"
               />
-            </div>
-            <button
+            </motion.div>
+            <motion.button
+              variants={itemVariants}
               type="submit"
               className="magnetic-btn w-full py-3.5 rounded-xl bg-foreground text-primary-foreground text-sm font-medium hover:scale-[1.02] transition-transform duration-300"
             >
-              Send Message
-            </button>
+              {siteData.contactPage.submitBtnText}
+            </motion.button>
           </motion.form>
         </div>
       </div>
