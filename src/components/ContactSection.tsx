@@ -14,7 +14,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding relative">
+    <section id="contact" className="px-5 md:px-12 lg:px-24 py-20 md:py-32 relative">
       <div ref={ref} className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

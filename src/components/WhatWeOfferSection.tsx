@@ -16,7 +16,7 @@ const WhatWeOfferSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding relative">
+    <section className="px-5 md:px-12 lg:px-24 py-20 md:py-32 relative">
       <div ref={ref} className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
