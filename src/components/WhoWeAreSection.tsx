@@ -1,0 +1,117 @@
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+
+const blocks = [
+  {
+    title: "Game-Changer for Brands",
+    text: "We don't just follow trends — we set them. Our strategic approach transforms how brands connect with their audiences.",
+  },
+  {
+    title: "Client-Centric",
+    text: "Every decision is rooted in understanding your goals. We become an extension of your team, invested in your success.",
+  },
+  {
+    title: "A Place to Grow",
+    text: "We build scalable solutions that evolve with your business. Today's foundation becomes tomorrow's competitive advantage.",
+  },
+];
+
+const WhoWeAreSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section id="about" className="section-padding relative overflow-hidden">
+      <div ref={ref} className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left: text */}
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-body"
+            >
+              About Us
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-4xl md:text-6xl font-display font-bold mb-6"
+            >
+              Who We <span className="italic text-gradient">Are</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-muted-foreground font-body text-lg leading-relaxed mb-12"
+            >
+              We are pioneering a new kind of agency that uncovers growth opportunities for clients and drives their success.
+            </motion.p>
+
+            <div className="space-y-8">
+              {blocks.map((block, i) => (
+                <motion.div
+                  key={block.title}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.3 + i * 0.15 }}
+                  className="pl-6 border-l-2 border-border hover:border-accent transition-colors duration-500"
+                >
+                  <h3 className="font-display text-lg font-bold mb-1">{block.title}</h3>
+                  <p className="text-sm text-muted-foreground font-body leading-relaxed">{block.text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: abstract visual */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="relative flex items-center justify-center"
+          >
+            <div className="relative w-80 h-80 md:w-96 md:h-96">
+              {[
+                { size: "100%", color: "hsl(var(--color-blue) / 0.15)", delay: 0 },
+                { size: "75%", color: "hsl(var(--color-purple) / 0.2)", delay: 1 },
+                { size: "50%", color: "hsl(var(--color-red) / 0.25)", delay: 2 },
+              ].map((ring, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute rounded-full"
+                  style={{
+                    width: ring.size,
+                    height: ring.size,
+                    background: ring.color,
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 5, -5, 0],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    delay: ring.delay,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="font-display text-2xl font-bold text-gradient">CBT</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default WhoWeAreSection;
