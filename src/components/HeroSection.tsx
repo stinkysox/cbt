@@ -1,49 +1,55 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const FloatingShape = ({
   color,
   size,
+  mobileSize,
   initialX,
   initialY,
   delay,
 }: {
   color: string;
   size: number;
+  mobileSize: number;
   initialX: string;
   initialY: string;
   delay: number;
-}) => (
-  <motion.div
-    className="absolute rounded-full blur-3xl opacity-30"
-    style={{
-      width: size,
-      height: size,
-      background: color,
-      left: initialX,
-      top: initialY,
-    }}
-    animate={{
-      y: [0, -30, 10, -20, 0],
-      x: [0, 15, -10, 20, 0],
-      scale: [1, 1.1, 0.95, 1.05, 1],
-    }}
-    transition={{
-      duration: 12,
-      repeat: Infinity,
-      delay,
-      ease: "easeInOut",
-    }}
-  />
-);
+}) => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  return (
+    <motion.div
+      className="absolute rounded-full blur-3xl opacity-20 md:opacity-30"
+      style={{
+        width: isMobile ? mobileSize : size,
+        height: isMobile ? mobileSize : size,
+        background: color,
+        left: initialX,
+        top: initialY,
+      }}
+      animate={{
+        y: [0, -20, 10, -15, 0],
+        x: [0, 10, -8, 12, 0],
+        scale: [1, 1.08, 0.96, 1.04, 1],
+      }}
+      transition={{ duration: 12, repeat: Infinity, delay, ease: "easeInOut" }}
+    />
+  );
+};
 
 const HeroSection = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const bgX = useTransform(mouseX, [0, window.innerWidth], [-15, 15]);
-  const bgY = useTransform(mouseY, [0, window.innerHeight], [-15, 15]);
+  const [dims, setDims] = useState({ w: 1200, h: 800 });
+  const bgX = useTransform(mouseX, [0, dims.w], [-15, 15]);
+  const bgY = useTransform(mouseY, [0, dims.h], [-15, 15]);
 
   useEffect(() => {
+    setDims({ w: window.innerWidth, h: window.innerHeight });
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -55,34 +61,33 @@ const HeroSection = () => {
   const words = ["Building", "Beyond", "the", "Ordinary"];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Floating shapes */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-0">
       <motion.div style={{ x: bgX, y: bgY }} className="absolute inset-0">
-        <FloatingShape color="hsl(0, 72%, 55%)" size={400} initialX="10%" initialY="20%" delay={0} />
-        <FloatingShape color="hsl(220, 75%, 55%)" size={350} initialX="60%" initialY="10%" delay={2} />
-        <FloatingShape color="hsl(45, 95%, 55%)" size={300} initialX="70%" initialY="60%" delay={4} />
-        <FloatingShape color="hsl(270, 60%, 55%)" size={280} initialX="20%" initialY="70%" delay={1} />
-        <FloatingShape color="hsl(25, 90%, 55%)" size={250} initialX="45%" initialY="40%" delay={3} />
+        <FloatingShape color="hsl(0, 72%, 55%)" size={400} mobileSize={200} initialX="10%" initialY="20%" delay={0} />
+        <FloatingShape color="hsl(220, 75%, 55%)" size={350} mobileSize={180} initialX="60%" initialY="10%" delay={2} />
+        <FloatingShape color="hsl(45, 95%, 55%)" size={300} mobileSize={160} initialX="70%" initialY="60%" delay={4} />
+        <FloatingShape color="hsl(270, 60%, 55%)" size={280} mobileSize={140} initialX="20%" initialY="70%" delay={1} />
+        <FloatingShape color="hsl(25, 90%, 55%)" size={250} mobileSize={130} initialX="45%" initialY="40%" delay={3} />
       </motion.div>
 
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-5 md:px-6 max-w-5xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-sm md:text-base tracking-[0.3em] uppercase text-muted-foreground mb-8 font-body"
+          className="text-xs md:text-base tracking-[0.2em] md:tracking-[0.3em] uppercase text-muted-foreground mb-6 md:mb-8 font-body"
         >
           Creativity Beyond Thoughts
         </motion.p>
 
-        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.9] tracking-tight mb-8">
+        <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.95] tracking-tight mb-6 md:mb-8">
           {words.map((word, i) => (
             <motion.span
               key={word}
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 + i * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className={`inline-block mr-[0.25em] ${i === 1 ? "italic text-gradient" : ""}`}
+              className={`inline-block mr-[0.2em] ${i === 1 ? "italic text-gradient" : ""}`}
             >
               {word}
             </motion.span>
@@ -93,7 +98,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.6 }}
-          className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-12 font-body font-light"
+          className="text-base md:text-xl text-muted-foreground max-w-md md:max-w-xl mx-auto mb-10 md:mb-12 font-body font-light"
         >
           Your partner in design, video and digital excellence.
         </motion.p>
@@ -105,7 +110,7 @@ const HeroSection = () => {
         >
           <a
             href="#contact"
-            className="magnetic-btn inline-flex items-center gap-3 px-8 py-4 rounded-full bg-foreground text-primary-foreground text-base font-medium hover:scale-105 transition-all duration-300 group"
+            className="magnetic-btn inline-flex items-center gap-3 px-7 py-3.5 md:px-8 md:py-4 rounded-full bg-foreground text-primary-foreground text-sm md:text-base font-medium hover:scale-105 transition-all duration-300 group"
           >
             Let's Discuss
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -113,12 +118,11 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 3 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
