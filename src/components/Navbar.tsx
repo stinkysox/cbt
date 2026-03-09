@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { X, Menu, Mail, Phone, MapPin } from "lucide-react";
 import { siteData } from "@/data/content";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +33,11 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 lg:px-24 py-4 transition-all duration-500 ${
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 lg:px-24 py-4 transition-all duration-500 ease-in-out ${
           scrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-border/30 shadow-sm"
-            : "bg-transparent"
+            ? "bg-background/80 backdrop-blur-xl border-b border-border/30 shadow-sm py-4"
+            : "bg-transparent py-6"
         }`}
       >
         {/* Logo */}
@@ -64,45 +62,51 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Desktop CTA */}
-        <Link
-          to="/contact"
-          className="hidden lg:inline-flex magnetic-btn px-5 py-2.5 rounded-full bg-foreground text-primary-foreground text-sm font-medium hover:scale-105 transition-transform duration-300"
-        >
-          Let's Talk
-        </Link>
+        {/* Desktop CTA & Theme Toggle */}
+        <div className="hidden lg:flex items-center gap-4">
+          <ThemeToggle />
+          <Link
+            to="/contact"
+            className="magnetic-btn px-5 py-2.5 rounded-full bg-foreground text-primary-foreground text-sm font-medium hover:scale-105 transition-transform duration-300"
+          >
+            Let's Talk
+          </Link>
+        </div>
 
-        {/* Hamburger Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden z-50 w-10 h-10 flex items-center justify-center rounded-full bg-foreground/5 backdrop-blur-sm"
-          aria-label="Toggle menu"
-        >
-          <AnimatePresence mode="wait">
-            {isOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <X size={20} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="menu"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Menu size={20} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </button>
-      </motion.nav>
+        {/* Mobile Header Icons */}
+        <div className="flex items-center gap-3 lg:hidden z-50">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-foreground/5 backdrop-blur-sm"
+            aria-label="Toggle menu"
+          >
+            <AnimatePresence mode="wait">
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X size={20} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu size={20} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
+      </nav>
 
       {/* Mobile Full-Screen Menu */}
       <AnimatePresence>
@@ -231,8 +235,8 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail size={14} className="text-muted-foreground shrink-0" />
-                  <a href="mailto:info@creativitybeyondthoughts.com" className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors">
-                    info@creativitybeyondthoughts.com
+                  <a href="mailto:info@creativebeyondimagination.com" className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors">
+                    info@creativebeyondimagination.com
                   </a>
                 </div>
                 <div className="flex items-center gap-3">

@@ -8,9 +8,9 @@ const MarqueeSection = () => {
   const duplicatedWords = [...words, ...words];
 
   return (
-    <div className="w-full bg-foreground py-10 overflow-hidden relative border-y border-white/10">
-      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-foreground to-transparent z-10" />
-      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-foreground to-transparent z-10" />
+    <div className="w-full bg-neutral-950 py-10 overflow-hidden relative border-y border-white/5">
+      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-neutral-950 to-transparent z-10" />
+      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-neutral-950 to-transparent z-10" />
       
       <div className="flex whitespace-nowrap">
         <motion.div

@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { siteData } from "@/data/content";
 
 const colors = siteData.colorPsychology.colors;
@@ -8,6 +8,17 @@ const ColorPsychologySection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const totalColors = colors.length;
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -38,7 +49,11 @@ const ColorPsychologySection = () => {
           {/* Animated background */}
           <motion.div
             className="absolute inset-0 transition-colors duration-700 ease-out"
-            style={{ backgroundColor: colors[activeIndex].bgLight }}
+            style={{ 
+              backgroundColor: isDark 
+                ? `hsl(${colors[activeIndex].hue.split(",")[0]} 30% 10%)` 
+                : colors[activeIndex].bgLight 
+            }}
           />
 
           {/* Floating orbs in background */}
@@ -181,7 +196,7 @@ const ColorPsychologySection = () => {
 
           {/* Scroll hint */}
           <motion.div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 scale-75 xs:scale-100"
             style={{
               opacity: useTransform(scrollYProgress, [0.85, 0.95], [1, 0]),
             }}
@@ -191,11 +206,11 @@ const ColorPsychologySection = () => {
               transition={{ duration: 2, repeat: Infinity }}
               className="flex flex-col items-center gap-2"
             >
-              <span className="text-xs font-body text-muted-foreground tracking-widest uppercase">
+              <span className="text-[10px] xs:text-xs font-body text-muted-foreground tracking-widest uppercase text-center whitespace-nowrap">
                 Scroll to explore
               </span>
-              <div className="w-5 h-8 rounded-full border-2 border-foreground/20 flex items-start justify-center p-1">
-                <motion.div className="w-1 h-2 rounded-full bg-foreground/40" />
+              <div className="w-4 h-7 xs:w-5 xs:h-8 rounded-full border-2 border-foreground/20 flex items-start justify-center p-1">
+                <motion.div className="w-1 h-1.5 xs:h-2 rounded-full bg-foreground/40" />
               </div>
             </motion.div>
           </motion.div>

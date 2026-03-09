@@ -59,6 +59,37 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  .dark {
+    --background: 30 10% 8%;
+    --foreground: 36 33% 94%;
+
+    --card: 30 10% 10%;
+    --card-foreground: 36 33% 94%;
+
+    --popover: 30 10% 10%;
+    --popover-foreground: 36 33% 94%;
+
+    --primary: 36 33% 94%;
+    --primary-foreground: 30 10% 8%;
+
+    --secondary: 30 10% 15%;
+    --secondary-foreground: 36 33% 90%;
+
+    --muted: 30 10% 12%;
+    --muted-foreground: 36 8% 60%;
+
+    --accent: 0 72% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 30 10% 18%;
+    --input: 30 10% 18%;
+    --ring: 36 33% 94%;
+
+    --glass-bg: 30 10% 8% / 0.7;
+    --glass-border: 30 10% 20% / 0.4;
+    --shadow-elegant: 0 20px 60px -15px rgba(0, 0, 0, 0.4);
+  }
 }
 
 @layer base {
@@ -132,7 +163,7 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -140,12 +171,23 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground) / 0.3);
-  border-radius: 3px;
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--muted-foreground) / 0.2),
+    hsl(var(--accent) / 0.4),
+    hsl(var(--muted-foreground) / 0.2)
+  );
+  border-radius: 20px;
+  border: 2px solid hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground) / 0.5);
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--muted-foreground) / 0.4),
+    hsl(var(--accent) / 0.6),
+    hsl(var(--muted-foreground) / 0.4)
+  );
 }
 
 /* Smooth scroll */

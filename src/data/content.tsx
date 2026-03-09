@@ -12,7 +12,7 @@ export const siteData = {
   // Contact Information
   contact: {
     address: "B-66, First Floor, New Rajinder Nagar, New Delhi 110060",
-    email: "info@creativitybeyondthoughts.com",
+    email: "info@creativebeyondimagination.com",
     phone: "+91 8800180670",
   },
 
@@ -353,7 +353,7 @@ export const siteData = {
       },
       {
         title: "7. Contact",
-        content: "For questions about these terms, please contact us at info@creativitybeyondthoughts.com or visit our office at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
+        content: "For questions about these terms, please contact us at info@creativebeyondimagination.com or visit our office at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
       },
     ]
   },
@@ -390,8 +390,108 @@ export const siteData = {
       },
       {
         title: "7. Contact",
-        content: "For privacy-related inquiries, please contact us at info@creativitybeyondthoughts.com or write to us at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
+        content: "For privacy-related inquiries, please contact us at info@creativebeyondimagination.com or write to us at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
       },
     ]
+  },
+
+  // NEW Phase 4 Content
+  process: {
+    sectionTag: "How We Work",
+    titleLine1: "Our Creative ",
+    titleHighlight: "Process",
+    steps: [
+      {
+        number: "01",
+        title: "Discover",
+        description: "We dive deep into your brand, market, and audience to uncover insights that drive strategy.",
+        iconType: "search"
+      },
+      {
+        number: "02",
+        title: "Design",
+        description: "Translating strategy into stunning visuals and intuitive user experiences.",
+        iconType: "pen-tool"
+      },
+      {
+        number: "03",
+        title: "Develop",
+        description: "Building robust, scalable digital products using modern technology stacks.",
+        iconType: "code"
+      },
+      {
+        number: "04",
+        title: "Deploy",
+        description: "Launching your project to the world and ensuring it achieves maximum impact.",
+        iconType: "rocket"
+      }
+    ]
+  },
+
+  stats: [
+    { label: "Projects Completed", value: "250", suffix: "+" },
+    { label: "Happy Clients", value: "120", suffix: "+" },
+    { label: "Awards Won", value: "15", suffix: "" },
+    { label: "Years Experience", value: "10", suffix: "+" }
+  ],
+
+  testimonials: {
+    sectionTag: "Testimonials",
+    titleLine1: "What Our ",
+    titleHighlight: "Clients",
+    titleLine2: " Say",
+    items: [
+      {
+        name: "Sarah Johnson",
+        role: "CEO, TechNova",
+        text: "The team at Creative Beyond Imagination transformed our brand identity into something truly world-class. Their attention to detail is unmatched.",
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
+      },
+      {
+        name: "Michael Chen",
+        role: "Marketing Director, GlobalFlow",
+        text: "Working with them was a seamless experience. They understood our vision perfectly and delivered a platform that exceeded our expectations.",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"
+      },
+      {
+        name: "Elena Rodriguez",
+        role: "Founder, Artistry Co.",
+        text: "Their creative process is truly out of the box. They helped us find a unique voice in a crowded market.",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop"
+      }
+    ]
+  },
+
+  // Phase 5: Journey & Milestones
+  journey: [
+    { year: "2016", title: "The Spark", description: "Founded in New Delhi with a vision to redefine digital storytelling." },
+    { year: "2018", title: "Global Reach", description: "Expanded operations to serve clients across three continents." },
+    { year: "2020", title: "Creative Pivot", description: "Integrated advanced motion graphics and 3D into our core services." },
+    { year: "2023", title: "God Mode", description: "Launched our proprietary strategic framework for brand breakthroughs." },
+    { year: "2026", title: "Future Forward", description: "Leading the next wave of interactive digital excellence." },
+  ],
+
+  // Phase 5: Team Aesthetic
+  team: [
+    { name: "Aarav Sharma", role: "Creative Director", energy: "var(--color-red)", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" },
+    { name: "Ishaan Verma", role: "Lead Strategist", energy: "var(--color-blue)", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" },
+    { name: "Ananya Gupta", role: "Design Lead", energy: "var(--color-purple)", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop" },
+    { name: "Rohan Malhotra", role: "Tech Architect", energy: "var(--color-pink)", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1970&auto=format&fit=crop" },
+  ],
+
+  // Phase 5: Case Studies (Spotlight)
+  projects: [
+    { title: "Lumina Vision", category: "Brand Identity", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2064&auto=format&fit=crop" },
+    { title: "Velocity X", category: "Web Platform", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" },
+    { title: "Aura Motion", category: "3D Animation", image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" },
+    { title: "Zenith Digital", category: "Strategy", image: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=2194&auto=format&fit=crop" },
+  ],
+
+  // Phase 5: Office Pulse
+  officePulse: {
+    location: "New Delhi, IN",
+    coordinates: "28.6139° N, 77.2090° E",
+    timezone: "Asia/Kolkata",
+    workingHours: "10:00 AM - 7:00 PM IST",
   }
 };
