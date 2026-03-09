@@ -21,7 +21,7 @@ const WhoWeAreSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="px-5 md:px-12 lg:px-24 py-20 md:py-32 relative overflow-hidden">
+    <section id="about" className="section-padding relative overflow-hidden">
       <div ref={ref} className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: text */}

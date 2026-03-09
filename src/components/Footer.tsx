@@ -9,7 +9,7 @@ const socials = [
 ];
 
 const Footer = () => (
-  <footer className="px-5 md:px-12 lg:px-24 py-12 md:py-16 border-t border-border/30">
+  <footer className="px-6 md:px-12 lg:px-24 py-16 border-t border-border/30">
     <div className="max-w-6xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
         <div>
