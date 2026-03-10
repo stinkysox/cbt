@@ -17,15 +17,18 @@ const About = () => {
             >
               {siteData.aboutPage.heroTag}
             </motion.span>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-6xl md:text-8xl lg:text-[10rem] font-display font-black leading-[0.9] tracking-tighter mb-10"
-            >
-              {siteData.aboutPage.heroTitleLine1}<br />
-              <span className="italic text-gradient">{siteData.aboutPage.heroHighlight}</span>
-            </motion.h1>
+        <motion.h1 
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.1 }}
+  className="text-6xl md:text-8xl lg:text-[10rem] font-display font-black leading-[0.9] tracking-tighter mb-10"
+>
+  {siteData.aboutPage.heroTitleLine1}<br />
+  {/* Added inline-block and horizontal padding */}
+  <span className="italic text-gradient inline-block px-4">
+    {siteData.aboutPage.heroHighlight}
+  </span>
+</motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

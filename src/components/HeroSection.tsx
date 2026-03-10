@@ -54,8 +54,6 @@ const HeroSection = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
-  const words = ["Building", "Beyond", "the", "Ordinary"];
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Floating shapes */}
@@ -77,14 +75,25 @@ const HeroSection = () => {
           {siteData.global.brandName.replace(".", "")}
         </motion.p>
 
-        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.9] tracking-tight mb-8">
+        {/* CHANGES:
+            1. Increased leading to 1.2 to ensure the browser allocates enough height for the font.
+            2. Added overflow-visible to the h1.
+        */}
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold leading-[1.2] tracking-tight mb-8 overflow-visible">
           {siteData.hero.words.map((word, i) => (
             <motion.span
-              key={word}
+              key={`${word}-${i}`}
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 + i * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className={`inline-block mr-[0.25em] ${i === 1 ? "italic text-gradient" : ""}`}
+              /* THE FIX: 
+                 - pb-[0.15em]: Extends the bottom of the span's bounding box.
+                 - -mb-[0.15em]: Pulls the following layout back up so the extra padding doesn't create a gap.
+                 - overflow-visible: Forces the browser to render parts of the letter that fall outside the box.
+              */
+              className={`inline-block mr-[0.25em] pb-[0.15em] -mb-[0.15em] overflow-visible ${
+                i === 1 ? "italic text-gradient" : ""
+              }`}
             >
               {word}
             </motion.span>

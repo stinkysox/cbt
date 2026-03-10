@@ -3,7 +3,7 @@ import { Lightbulb, Palette, Layout, Globe, Pen, Film } from "lucide-react";
 export const siteData = {
   // Global / Branding Settings
   global: {
-    brandName: "Creative Beyond Imagination",
+    brandName: "CBT",
     tagline: "Building beyond the ordinary. Your partner in design, video and digital excellence.",
     ctaText: "Let's Talk",
     footerCopyright: "© 2026 Creative Beyond Imagination. All rights reserved.",
@@ -28,9 +28,9 @@ export const siteData = {
   // Navigation Links
   navLinks: [
     { label: "Home", to: "/" },
-    { label: "Who We Are", to: "/work" },
-    { label: "Services", to: "/services" },
     { label: "About", to: "/about" },
+    { label: "What We Do", to: "/work" },
+    { label: "Services", to: "/services" },
     { label: "Contact", to: "/contact" },
   ],
 
@@ -269,7 +269,7 @@ export const siteData = {
   // About Page
   aboutPage: {
     heroTag: "About Us",
-    heroTitleLine1: "Who We ",
+    heroTitleLine1: "Who We",
     heroHighlight: "Are",
     heroDescription: "We are pioneering a new kind of agency that uncovers growth opportunities for clients and drives their success.",
     missionBody: "At Creative Beyond Imagination, we blend strategic thinking with creative excellence to help brands stand out. Based in New Delhi, we serve clients worldwide with a passion for design, technology, and storytelling.",
