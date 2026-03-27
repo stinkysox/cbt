@@ -20,10 +20,10 @@ const Services = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-6xl md:text-8xl lg:text-[10rem] font-display font-black leading-[0.9] tracking-tighter mb-10"
+              className="text-6xl md:text-8xl lg:text-[10rem] font-display font-black leading-[1.1] tracking-tighter mb-10 overflow-visible"
             >
               {siteData.services.heroTitle} <br />
-              <span className="italic text-gradient">{siteData.services.heroTitleHighlight}</span>
+              <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">{siteData.services.heroTitleHighlight}</span>
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}

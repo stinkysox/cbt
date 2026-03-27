@@ -26,11 +26,11 @@ const Contact = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-black leading-tight md:leading-none tracking-tight mb-6 md:mb-10"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-black leading-[1.1] md:leading-none tracking-tight mb-6 md:mb-10 overflow-visible"
               >
                 {siteData.contactPage.heroTitleLine1} <br />
 
-                <span className="italic text-gradient">
+                <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">
                   {siteData.contactPage.heroHighlight}
                 </span>
 
@@ -127,9 +127,9 @@ const Contact = () => {
 
               <div className="space-y-6">
 
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold overflow-visible text-left">
                   Have a project <br />
-                  <span className="italic text-gradient">in mind?</span>
+                  <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">in mind?</span>
                 </h2>
 
                 <p className="text-sm sm:text-base text-muted-foreground font-body">

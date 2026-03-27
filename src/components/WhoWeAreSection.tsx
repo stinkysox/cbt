@@ -26,9 +26,9 @@ const WhoWeAreSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl md:text-6xl font-display font-bold mb-6"
+              className="text-4xl md:text-6xl font-display font-bold mb-6 overflow-visible"
             >
-              {siteData.aboutPage.heroTitleLine1} <span className="italic text-gradient">{siteData.aboutPage.heroHighlight}</span>
+              {siteData.aboutPage.heroTitleLine1} <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">{siteData.aboutPage.heroHighlight}</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}

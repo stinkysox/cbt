@@ -91,7 +91,7 @@ const HeroSection = () => {
                  - -mb-[0.15em]: Pulls the following layout back up so the extra padding doesn't create a gap.
                  - overflow-visible: Forces the browser to render parts of the letter that fall outside the box.
               */
-              className={`inline-block mr-[0.25em] pb-[0.15em] -mb-[0.15em] overflow-visible ${
+              className={`inline-block mr-[0.15em] pb-[0.15em] -mb-[0.15em] pr-[0.1em] overflow-visible ${
                 i === 1 ? "italic text-gradient" : ""
               }`}
             >

@@ -12,9 +12,9 @@ const Terms = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-tight mb-4"
+            className="text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-tight mb-4 overflow-visible"
           >
-            {siteData.termsPage.heroTitleLine1}<span className="italic text-gradient">{siteData.termsPage.heroHighlight}</span>
+            {siteData.termsPage.heroTitleLine1}<span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">{siteData.termsPage.heroHighlight}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}

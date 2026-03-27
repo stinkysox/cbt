@@ -77,8 +77,8 @@ const ServicesSection = () => {
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-body">
             {siteData.services.heroSubtitle}
           </p>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold">
-            What We <span className="italic text-gradient">Do</span>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold overflow-visible">
+            What We <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">Do</span>
           </h2>
         </motion.div>
 

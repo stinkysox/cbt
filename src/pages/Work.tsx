@@ -7,8 +7,8 @@ const Work = () => {
     <div className="min-h-screen bg-background">
       <main className="pt-24">
         {/* Hero Section */}
-        <section className="py-24 px-6 overflow-hidden">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-24 px-6">
+          <div className="max-w-6xl mx-auto overflow-visible pl-4">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -20,10 +20,10 @@ const Work = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-6xl md:text-8xl lg:text-[10rem] font-display font-black leading-[0.9] tracking-tighter mb-10"
+              className="text-6xl md:text-8xl lg:text-[10rem] font-display font-black leading-[1.3] tracking-tighter mb-10 overflow-visible pt-6 pb-4"
             >
               {siteData.whoWeAre.heroTitle1} <br />
-              <span className="italic text-gradient">{siteData.whoWeAre.heroTitleHighlight}</span> <br />
+              <span className="italic text-gradient inline-block pl-[0.1em] pr-[0.15em] pb-[0.15em] overflow-visible">{siteData.whoWeAre.heroTitleHighlight}</span> <br />
               {siteData.whoWeAre.heroTitle2}
             </motion.h1>
             <motion.p 

@@ -17,8 +17,8 @@ const BentoGallery = () => {
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-body">
             {sectionTag}
           </p>
-          <h2 className="text-4xl md:text-6xl font-display font-bold">
-            {titleLine1} <span className="italic text-gradient">{titleHighlight}</span>
+          <h2 className="text-4xl md:text-6xl font-display font-bold overflow-visible">
+            {titleLine1} <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">{titleHighlight}</span>
           </h2>
         </motion.div>
 

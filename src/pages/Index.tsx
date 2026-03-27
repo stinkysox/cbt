@@ -31,9 +31,9 @@ const Index = () => {
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-body">
             {siteData.bottomCta.subtitle}
           </p>
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 overflow-visible">
             {siteData.bottomCta.titleLine1}<br />
-            <span className="italic text-gradient">{siteData.bottomCta.titleHighlight}</span>{siteData.bottomCta.titlePunctuation}
+            <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">{siteData.bottomCta.titleHighlight}</span>{siteData.bottomCta.titlePunctuation}
           </h2>
           <p className="text-muted-foreground font-body text-lg mb-10">
             {siteData.bottomCta.description}
