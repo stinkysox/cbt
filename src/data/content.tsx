@@ -69,6 +69,7 @@ export const siteData = {
     sectionTag: "Our Work",
     titleLine1: "Creative ",
     titleHighlight: "Excellence",
+    description: "A curated selection of our most impactful work, where strategic vision meets meticulous craft to create digital experiences that resonate.",
     featured: [
       {
         id: "feat-1",

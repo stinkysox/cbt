@@ -8,9 +8,17 @@ const BentoGallery = () => {
     <section className="section-padding relative bg-background py-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* Featured Heading */}
-        <h1 className="text-6xl md:text-8xl font-display font-bold mb-12">
-          Featured
-        </h1>
+        <div className="max-w-3xl mb-16">
+          <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-body">
+            {siteData.bentoGallery.sectionTag}
+          </p>
+          <h2 className="text-6xl md:text-8xl font-display font-bold mb-8 transition-colors duration-300">
+            Featured
+          </h2>
+          <p className="text-muted-foreground font-body text-lg md:text-xl leading-relaxed">
+            {siteData.bentoGallery.description}
+          </p>
+        </div>
 
         {/* Bento Grid 
             - grid-cols-1: Single column on mobile
