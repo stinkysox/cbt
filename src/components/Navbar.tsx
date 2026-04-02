@@ -41,24 +41,36 @@ const Navbar = () => {
         }`}
       >
         {/* Logo */}
-        <Link to="/" className="font-display text-xl md:text-2xl font-bold tracking-tight z-50">
+        <Link to="/" className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight z-50">
           {siteData.global.brandName}
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-8 font-body text-sm tracking-wide">
           {siteData.navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`transition-colors duration-300 ${
-                location.pathname === link.to
-                  ? "text-foreground font-medium"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {link.label}
-            </Link>
+            link.external ? (
+              <a
+                key={link.to}
+                href={link.to}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-300"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`transition-colors duration-300 ${
+                  location.pathname === link.to
+                    ? "text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
           ))}
         </div>
 
@@ -129,16 +141,28 @@ const Navbar = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + i * 0.06, duration: 0.4 }}
                     >
-                      <Link
-                        to={link.to}
-                        className={`block text-3xl sm:text-4xl font-display font-bold py-2 transition-colors duration-300 ${
-                          location.pathname === link.to
-                            ? "text-gradient"
-                            : "text-foreground/70 hover:text-foreground"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
+                      {link.external ? (
+                        <a
+                          href={link.to}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-3xl sm:text-4xl font-display font-bold py-2 text-foreground/70 hover:text-foreground transition-colors duration-300"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link
+                          to={link.to}
+                          className={`block text-3xl sm:text-4xl font-display font-bold py-2 transition-colors duration-300 ${
+                            location.pathname === link.to
+                              ? "text-gradient"
+                              : "text-foreground/70 hover:text-foreground"
+                          }`}
+                        >
+                          {link.label}
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
                 </nav>
@@ -235,8 +259,8 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail size={14} className="text-muted-foreground shrink-0" />
-                  <a href="mailto:info@creativebeyondimagination.com" className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors">
-                    info@creativebeyondimagination.com
+                  <a href={`mailto:${siteData.contact.email}`} className="text-xs font-body text-muted-foreground hover:text-foreground transition-colors">
+                    {siteData.contact.email}
                   </a>
                 </div>
                 <div className="flex items-center gap-3">

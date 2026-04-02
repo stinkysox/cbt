@@ -2,6 +2,7 @@ import HeroSection from "@/components/HeroSection";
 import MarqueeSection from "@/components/MarqueeSection";
 import ColorPsychologySection from "@/components/ColorPsychologySection";
 import BentoGallery from "@/components/BentoGallery";
+import WeddingSection from "@/components/WeddingSection";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { siteData } from "@/data/content";
@@ -18,6 +19,9 @@ const Index = () => {
       
       {/* Dynamic interactive bento grid gallery displaying work/highlights */}
       <BentoGallery />
+
+      {/* Wedding Artistry Section */}
+      <WeddingSection />
 
       {/* CTA Section */}
       <section className="section-padding text-center">

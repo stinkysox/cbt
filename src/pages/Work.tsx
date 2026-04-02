@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { siteData } from "@/data/content";
 import ProjectSpotlight from "@/components/ProjectSpotlight";
+import BrandSlideshow from "@/components/BrandSlideshow";
 
 const Work = () => {
   return (
@@ -37,8 +38,10 @@ const Work = () => {
           </div>
         </section>
 
+        {/* Brand Slideshow Section */}
+        <BrandSlideshow />
+
         {/* Phase 5 Project Spotlight (Horizontal Scroll) */}
-        <ProjectSpotlight />
 
         {/* CTA Section */}
         <section className="py-32 px-6 bg-foreground text-primary-foreground text-center relative overflow-hidden">

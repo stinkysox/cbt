@@ -49,10 +49,10 @@ const ColorPsychologySection = () => {
           {/* Animated background */}
           <motion.div
             className="absolute inset-0 transition-colors duration-700 ease-out"
-            style={{ 
-              backgroundColor: isDark 
-                ? `hsl(${colors[activeIndex].hue.split(",")[0]} 30% 10%)` 
-                : colors[activeIndex].bgLight 
+            style={{
+              backgroundColor: isDark
+                ? `hsl(${colors[activeIndex].hue.split(",")[0]} 30% 10%)`
+                : colors[activeIndex].bgLight,
             }}
           />
 
@@ -94,25 +94,25 @@ const ColorPsychologySection = () => {
 
           {/* Content */}
           <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 flex flex-col h-full justify-center">
-            {/* Section heading */}
-            <motion.div
-              className="mb-8 md:mb-12 text-center"
-              style={{
-                opacity: useTransform(scrollYProgress, [0, 0.08], [1, 0]),
-                y: useTransform(scrollYProgress, [0, 0.08], [0, -40]),
-              }}
-            >
+            {/* Section heading — stays fixed, only highlight color changes */}
+            <div className="mb-8 md:mb-12 text-center">
               <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-3 font-body">
                 {siteData.colorPsychology.sectionTag}
               </p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
                 {siteData.colorPsychology.titleLine1}
-                <span className="italic" style={{ color: colors[activeIndex].bg, transition: "color 0.6s ease" }}>
+                <span
+                  className="italic"
+                  style={{
+                    color: colors[activeIndex].bg,
+                    transition: "color 0.6s ease",
+                  }}
+                >
                   {siteData.colorPsychology.titleHighlight}
                 </span>{" "}
                 {siteData.colorPsychology.titleLine2}
               </h2>
-            </motion.div>
+            </div>
 
             {/* Color cards */}
             <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
@@ -218,7 +218,9 @@ const ColorPsychologySection = () => {
           {/* Color index counter */}
           <div className="absolute bottom-8 right-6 md:right-12">
             <span className="font-display text-sm text-muted-foreground">
-              <span className="text-foreground font-bold text-lg">{String(activeIndex + 1).padStart(2, "0")}</span>
+              <span className="text-foreground font-bold text-lg">
+                {String(activeIndex + 1).padStart(2, "0")}
+              </span>
               {" / "}
               {String(totalColors).padStart(2, "0")}
             </span>

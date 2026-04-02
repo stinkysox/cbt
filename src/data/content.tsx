@@ -6,13 +6,13 @@ export const siteData = {
     brandName: "CBT",
     tagline: "Building beyond the ordinary. Your partner in design, video and digital excellence.",
     ctaText: "Let's Talk",
-    footerCopyright: "© 2026 Creative Beyond Imagination. All rights reserved.",
+    footerCopyright: "© 2026 Creative Beyond Thought. All rights reserved.",
   },
 
   // Contact Information
   contact: {
     address: "B-66, First Floor, New Rajinder Nagar, New Delhi 110060",
-    email: "info@creativebeyondimagination.com",
+    email: "info@creativebeyondthought.com",
     phone: "+91 8800180670",
   },
 
@@ -31,6 +31,7 @@ export const siteData = {
     { label: "About", to: "/about" },
     { label: "What We Do", to: "/work" },
     { label: "Services", to: "/services" },
+    { label: "Wedding", to: "https://www.instagram.com/creativitybeyondthoughts", external: true },
     { label: "Contact", to: "/contact" },
   ],
 
@@ -41,7 +42,7 @@ export const siteData = {
 
   // Home Page - Hero Section
   hero: {
-    words: ["Building", "Beyond", "the", "Ordinary"],
+    words: ["Creative", "Beyond", "Thought"],
     subtitle: "We blend creative vision with strategic thinking to craft digital experiences that leave a lasting impact.",
     ctaLink: "/work",
     ctaText: "Explore our work",
@@ -68,12 +69,21 @@ export const siteData = {
     sectionTag: "Our Work",
     titleLine1: "Creative ",
     titleHighlight: "Excellence",
+    featured: [
+      {
+        id: "feat-1",
+        title: "The Next Frontier",
+        category: "Featured Strategy",
+        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
+        description: "A deep dive into the future of digital interaction and immersive branding.",
+      }
+    ],
     items: [
       {
         id: "1",
         title: "Brand Evolution",
         category: "Strategy & Design",
-        image: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=2194&auto=format&fit=crop",
+        image: "https://i.postimg.cc/wvSf0s2C/MAV04966.webp",
         colSpan: 2, 
         rowSpan: 2
       },
@@ -81,7 +91,7 @@ export const siteData = {
         id: "2",
         title: "Digital Platform",
         category: "Web & App",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+        image: "https://i.postimg.cc/gJfSN642/MAV04994-(1).webp",
         colSpan: 1,
         rowSpan: 1
       },
@@ -89,7 +99,7 @@ export const siteData = {
         id: "3",
         title: "Product Launch",
         category: "Video & Animation",
-        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
+        image: "https://i.postimg.cc/V63GDb4z/MAV05212.webp",
         colSpan: 1,
         rowSpan: 1
       },
@@ -97,7 +107,7 @@ export const siteData = {
         id: "4",
         title: "Visual Identity",
         category: "Design Systems",
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2064&auto=format&fit=crop",
+        image: "https://i.postimg.cc/rmvnQtgV/MAV05225.webp",
         colSpan: 2,
         rowSpan: 1
       }
@@ -272,7 +282,7 @@ export const siteData = {
     heroTitleLine1: "Who We",
     heroHighlight: "Are",
     heroDescription: "We are pioneering a new kind of agency that uncovers growth opportunities for clients and drives their success.",
-    missionBody: "At Creative Beyond Imagination, we blend strategic thinking with creative excellence to help brands stand out. Based in New Delhi, we serve clients worldwide with a passion for design, technology, and storytelling.",
+    missionBody: "At Creative Beyond Thought, we blend strategic thinking with creative excellence to help brands stand out. Based in New Delhi, we serve clients worldwide with a passion for design, technology, and storytelling.",
     brandInitials: "CBT",
     blocks: [
       {
@@ -329,7 +339,7 @@ export const siteData = {
     sections: [
       {
         title: "1. Introduction",
-        content: "Welcome to Creative Beyond Imagination. By accessing and using our website and services, you agree to comply with these terms and conditions. Please read them carefully before engaging with our services."
+        content: "Welcome to Creative Beyond Thought. By accessing and using our website and services, you agree to comply with these terms and conditions. Please read them carefully before engaging with our services."
       },
       {
         title: "2. Services",
@@ -337,7 +347,7 @@ export const siteData = {
       },
       {
         title: "3. Intellectual Property",
-        content: "All content, designs, and materials created by Creative Beyond Imagination remain our intellectual property until full payment is received. Upon payment, ownership of deliverables transfers to the client as specified in the contract."
+        content: "All content, designs, and materials created by Creative Beyond Thought remain our intellectual property until full payment is received. Upon payment, ownership of deliverables transfers to the client as specified in the contract."
       },
       {
         title: "4. Payment Terms",
@@ -349,11 +359,11 @@ export const siteData = {
       },
       {
         title: "6. Limitation of Liability",
-        content: "Creative Beyond Imagination shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services or website."
+        content: "Creative Beyond Thought shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services or website."
       },
       {
         title: "7. Contact",
-        content: "For questions about these terms, please contact us at info@creativebeyondimagination.com or visit our office at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
+        content: "For questions about these terms, please contact us at info@creativebeyondthought.com or visit our office at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
       },
     ]
   },
@@ -390,7 +400,7 @@ export const siteData = {
       },
       {
         title: "7. Contact",
-        content: "For privacy-related inquiries, please contact us at info@creativebeyondimagination.com or write to us at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
+        content: "For privacy-related inquiries, please contact us at info@creativebeyondthought.com or write to us at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
       },
     ]
   },
@@ -444,7 +454,7 @@ export const siteData = {
       {
         name: "Sarah Johnson",
         role: "CEO, TechNova",
-        text: "The team at Creative Beyond Imagination transformed our brand identity into something truly world-class. Their attention to detail is unmatched.",
+        text: "The team at Creative Beyond Thought transformed our brand identity into something truly world-class. Their attention to detail is unmatched.",
         image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
       },
       {
@@ -493,5 +503,56 @@ export const siteData = {
     coordinates: "28.6139° N, 77.2090° E",
     timezone: "Asia/Kolkata",
     workingHours: "10:00 AM - 7:00 PM IST",
+  },
+  
+  // Brand Slideshow Data
+  brandShowcase: {
+    title: "Brands We've Empowered",
+    subtitle: "Strategic partnerships that drive growth",
+    brands: [
+      {
+        name: "MG",
+        images: [
+          "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1617469767053-d3b523a0b982?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2070&auto=format&fit=crop"
+        ]
+      },
+      {
+        name: "LG",
+        images: [
+          "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1593359674241-55cd4bd7e37a?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1526738549149-8e07eca270b4?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=2070&auto=format&fit=crop"
+        ]
+      },
+      {
+        name: "Apple",
+        images: [
+          "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1926&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1491933382434-500287f9b54b?q=80&w=2000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1522204538344-922f76ece041?q=80&w=2071&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1512054191704-94bc97223630?q=80&w=2070&auto=format&fit=crop"
+        ]
+      }
+    ]
+  },
+
+  // Wedding Section (Homepage)
+  weddingSection: {
+    tag: "Artistry",
+    title: "Eternal Moments",
+    highlight: "Wedding Work",
+    description: "Capturing the soul of celebration through cinematic storytelling and soulful imagery.",
+    ctaText: "Explore @creativitybeyondthoughts",
+    link: "https://www.instagram.com/creativitybeyondthoughts"
   }
 };

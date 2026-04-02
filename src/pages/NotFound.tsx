@@ -39,7 +39,7 @@ const NotFound = () => {
           transition={{ delay: 0.3, duration: 0.8 }}
         >
           <h2 className="text-3xl md:text-5xl font-display font-bold mb-4 overflow-visible">
-            Lost in <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">Imagination?</span>
+            Lost in <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">Thought?</span>
           </h2>
           <p className="text-muted-foreground font-body text-lg max-w-md mx-auto mb-10">
             The page you're looking for has drifted beyond our creative boundaries.
