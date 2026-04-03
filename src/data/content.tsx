@@ -92,7 +92,7 @@ export const siteData = {
         id: "2",
         title: "Digital Platform",
         category: "Web & App",
-        image: "https://i.postimg.cc/gJfSN642/MAV04994-(1).webp",
+        image: "https://i.postimg.cc/qMsrsr0x/Whats-App-Image-2026-04-03-at-3-41-21-PM.jpg",
         colSpan: 1,
         rowSpan: 1
       },
@@ -484,10 +484,11 @@ export const siteData = {
 
   // Phase 5: Team Aesthetic
   team: [
-    { name: "Aarav Sharma", role: "Creative Director", energy: "var(--color-red)", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" },
-    { name: "Ishaan Verma", role: "Lead Strategist", energy: "var(--color-blue)", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" },
-    { name: "Ananya Gupta", role: "Design Lead", energy: "var(--color-purple)", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop" },
-    { name: "Rohan Malhotra", role: "Tech Architect", energy: "var(--color-pink)", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1970&auto=format&fit=crop" },
+    { name: "Akshay Barman", role: "Creative Architect", energy: "var(--color-red)", image: "/1. Akshay Barman.jpg" },
+    { name: "Brijesh Kumar", role: "Master of Concepts", energy: "var(--color-blue)", image: "/2. Brijesh Kumar.jpg" },
+    { name: "Abhijeet Kumar", role: "Visual Storyteller", energy: "var(--color-purple)", image: "/3. Abhijeet Kumar.jpg" },
+    { name: "Ritivik Sharma", role: "Photo Alchemist", energy: "var(--color-orange)", image: "/4. Ritivik Sharma.jpg" },
+    { name: "Nishant", role: "Visual Craftsperson", energy: "var(--color-pink)", image: "/5. Nishant.jpg" },
   ],
 
   // Phase 5: Case Studies (Spotlight)
@@ -513,14 +514,13 @@ export const siteData = {
     brands: [
       {
         name: "MG",
-        images: [
-          "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=2070&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=2070&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1617469767053-d3b523a0b982?q=80&w=2070&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2070&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2070&auto=format&fit=crop"
-        ]
+     images: [
+  "https://i.postimg.cc/wvSf0s2C/MAV04966.webp",
+  "https://i.postimg.cc/gJfSN642/MAV04994-(1).webp",
+  "https://i.postimg.cc/V63GDb4z/MAV05212.webp",
+  "https://i.postimg.cc/rmvnQtgV/MAV05225.webp",
+  "https://i.postimg.cc/qMsrsr0x/Whats-App-Image-2026-04-03-at-3-41-21-PM.jpg"
+]
       },
       {
         name: "LG",

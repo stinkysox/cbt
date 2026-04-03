@@ -17,7 +17,7 @@ const TeamGrid = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex flex-wrap justify-center gap-8 px-4">
           {siteData.team.map((member, index) => (
             <motion.div
               key={member.name}
@@ -25,7 +25,7 @@ const TeamGrid = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative"
+              className="group relative w-full sm:w-64 lg:w-56"
             >
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl mb-4">
                 {/* Background energy glow on hover */}
