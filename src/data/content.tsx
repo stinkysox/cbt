@@ -3,16 +3,17 @@ import { Lightbulb, Palette, Layout, Globe, Pen, Film } from "lucide-react";
 export const siteData = {
   // Global / Branding Settings
   global: {
-    brandName: "CBT",
+    brandName: "Creativity Beyond Thoughts",
+    shortForm: "CBT",
     tagline: "Building beyond the ordinary. Your partner in design, video and digital excellence.",
     ctaText: "Let's Talk",
-    footerCopyright: "© 2026 Creative Beyond Thought. All rights reserved.",
+    footerCopyright: "© 2026 Creativity Beyond Thoughts. All rights reserved.",
   },
 
   // Contact Information
   contact: {
     address: "B-66, First Floor, New Rajinder Nagar, New Delhi 110060",
-    email: "info@creativebeyondthought.com",
+    email: "info@creativitybeyondthoughts.com",
     phone: "+91 8800180670",
   },
 
@@ -42,7 +43,7 @@ export const siteData = {
 
   // Home Page - Hero Section
   hero: {
-    words: ["Creative", "Beyond", "Thought"],
+    words: ["Creativity", "Beyond", "Thoughts"],
     subtitle: "We blend creative vision with strategic thinking to craft digital experiences that leave a lasting impact.",
     ctaLink: "/work",
     ctaText: "Explore our work",
@@ -85,7 +86,7 @@ export const siteData = {
         title: "Brand Evolution",
         category: "Strategy & Design",
         image: "https://i.postimg.cc/wvSf0s2C/MAV04966.webp",
-        colSpan: 2, 
+        colSpan: 2,
         rowSpan: 2
       },
       {
@@ -141,25 +142,11 @@ export const siteData = {
         color: "var(--color-red)",
       },
       {
-        icon: Layout,
-        title: "Web & App Designing",
-        description: "Designing intuitive interfaces that delight users and drive engagement at every interaction.",
-        points: ["UI/UX Design", "Prototyping", "Design Systems", "User Research"],
-        color: "var(--color-purple)",
-      },
-      {
         icon: Globe,
-        title: "Web & App Development",
-        description: "Building performant digital products with cutting-edge technology that scales with your business.",
-        points: ["Full-Stack Development", "API Integration", "Cloud Architecture", "Performance Optimization"],
+        title: "Digital Product Design & Development",
+        description: "We bring your ideas to life with beautiful designs and websites that actually work. From sketching out the first scroll to launching your app, we handle the look, the feel, and the build so you don't have to worry about a thing.",
+        points: ["UI/UX Design & Prototyping", "Full-Stack Web & App Development", "Performance Optimization", "Scalable Cloud Architecture"],
         color: "var(--color-blue)",
-      },
-      {
-        icon: Pen,
-        title: "UI/UX Designing",
-        description: "Creating user experiences grounded in research, psychology, and best practices to maximize conversions.",
-        points: ["User Research", "Wireframing", "Interaction Design", "Usability Testing"],
-        color: "var(--color-pink)",
       },
       {
         icon: Film,
@@ -194,7 +181,7 @@ export const siteData = {
       {
         title: "Game-Changer for Brands",
         text: "Our team empowers some of the world's leading brands to leverage media in redefining consumer interactions. We guide them in navigating new channels, emerging genres, innovative commerce platforms, and transformative experiences.",
-        iconType: "circles", // Mapped in component
+        iconType: "circles",
       },
       {
         title: "Client-Centric",
@@ -283,7 +270,7 @@ export const siteData = {
     heroTitleLine1: "Who We",
     heroHighlight: "Are",
     heroDescription: "We are pioneering a new kind of agency that uncovers growth opportunities for clients and drives their success.",
-    missionBody: "At Creative Beyond Thought, we blend strategic thinking with creative excellence to help brands stand out. Based in New Delhi, we serve clients worldwide with a passion for design, technology, and storytelling.",
+    missionBody: "At Creativity Beyond Thoughts, we blend strategic thinking with creative excellence to help brands stand out. Based in New Delhi, we serve clients worldwide with a passion for design, technology, and storytelling.",
     brandInitials: "CBT",
     blocks: [
       {
@@ -340,7 +327,7 @@ export const siteData = {
     sections: [
       {
         title: "1. Introduction",
-        content: "Welcome to Creative Beyond Thought. By accessing and using our website and services, you agree to comply with these terms and conditions. Please read them carefully before engaging with our services."
+        content: "Welcome to Creativity Beyond Thoughts. By accessing and using our website and services, you agree to comply with these terms and conditions. Please read them carefully before engaging with our services."
       },
       {
         title: "2. Services",
@@ -348,7 +335,7 @@ export const siteData = {
       },
       {
         title: "3. Intellectual Property",
-        content: "All content, designs, and materials created by Creative Beyond Thought remain our intellectual property until full payment is received. Upon payment, ownership of deliverables transfers to the client as specified in the contract."
+        content: "All content, designs, and materials created by Creativity Beyond Thoughts remain our intellectual property until full payment is received. Upon payment, ownership of deliverables transfers to the client as specified in the contract."
       },
       {
         title: "4. Payment Terms",
@@ -360,11 +347,11 @@ export const siteData = {
       },
       {
         title: "6. Limitation of Liability",
-        content: "Creative Beyond Thought shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services or website."
+        content: "Creativity Beyond Thoughts shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services or website."
       },
       {
         title: "7. Contact",
-        content: "For questions about these terms, please contact us at info@creativebeyondthought.com or visit our office at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
+        content: "For questions about these terms, please contact us at info@creativitybeyondthoughts.com or visit our office at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
       },
     ]
   },
@@ -401,75 +388,8 @@ export const siteData = {
       },
       {
         title: "7. Contact",
-        content: "For privacy-related inquiries, please contact us at info@creativebeyondthought.com or write to us at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
+        content: "For privacy-related inquiries, please contact us at info@creativitybeyondthoughts.com or write to us at B-66, First Floor, New Rajinder Nagar, New Delhi 110060."
       },
-    ]
-  },
-
-  // NEW Phase 4 Content
-  process: {
-    sectionTag: "How We Work",
-    titleLine1: "Our Creative ",
-    titleHighlight: "Process",
-    steps: [
-      {
-        number: "01",
-        title: "Discover",
-        description: "We dive deep into your brand, market, and audience to uncover insights that drive strategy.",
-        iconType: "search"
-      },
-      {
-        number: "02",
-        title: "Design",
-        description: "Translating strategy into stunning visuals and intuitive user experiences.",
-        iconType: "pen-tool"
-      },
-      {
-        number: "03",
-        title: "Develop",
-        description: "Building robust, scalable digital products using modern technology stacks.",
-        iconType: "code"
-      },
-      {
-        number: "04",
-        title: "Deploy",
-        description: "Launching your project to the world and ensuring it achieves maximum impact.",
-        iconType: "rocket"
-      }
-    ]
-  },
-
-  stats: [
-    { label: "Projects Completed", value: "250", suffix: "+" },
-    { label: "Happy Clients", value: "120", suffix: "+" },
-    { label: "Awards Won", value: "15", suffix: "" },
-    { label: "Years Experience", value: "10", suffix: "+" }
-  ],
-
-  testimonials: {
-    sectionTag: "Testimonials",
-    titleLine1: "What Our ",
-    titleHighlight: "Clients",
-    titleLine2: " Say",
-    items: [
-      {
-        name: "Sarah Johnson",
-        role: "CEO, TechNova",
-        text: "The team at Creative Beyond Thought transformed our brand identity into something truly world-class. Their attention to detail is unmatched.",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
-      },
-      {
-        name: "Michael Chen",
-        role: "Marketing Director, GlobalFlow",
-        text: "Working with them was a seamless experience. They understood our vision perfectly and delivered a platform that exceeded our expectations.",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"
-      },
-      {
-        name: "Elena Rodriguez",
-        role: "Founder, Artistry Co.",
-        text: "Their creative process is truly out of the box. They helped us find a unique voice in a crowded market.",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop"
-      }
     ]
   },
 
@@ -506,7 +426,7 @@ export const siteData = {
     timezone: "Asia/Kolkata",
     workingHours: "10:00 AM - 7:00 PM IST",
   },
-  
+
   // Brand Slideshow Data
   brandShowcase: {
     title: "Brands We've Empowered",
@@ -514,52 +434,51 @@ export const siteData = {
     brands: [
       {
         name: "MG",
-     images: [
-  "https://i.postimg.cc/wvSf0s2C/MAV04966.webp",
-  "https://i.postimg.cc/gJfSN642/MAV04994-(1).webp",
-  "https://i.postimg.cc/V63GDb4z/MAV05212.webp",
-  "https://i.postimg.cc/rmvnQtgV/MAV05225.webp",
-  "https://i.postimg.cc/qMsrsr0x/Whats-App-Image-2026-04-03-at-3-41-21-PM.jpg"
-]
+        images: [
+          "https://i.postimg.cc/wvSf0s2C/MAV04966.webp",
+          "https://i.postimg.cc/gJfSN642/MAV04994-(1).webp",
+          "https://i.postimg.cc/V63GDb4z/MAV05212.webp",
+          "https://i.postimg.cc/rmvnQtgV/MAV05225.webp",
+          "https://i.postimg.cc/qMsrsr0x/Whats-App-Image-2026-04-03-at-3-41-21-PM.jpg"
+        ]
       },
-    {
-  name: "Events",
-  images: [
-    "https://i.postimg.cc/Prbq8fwk/gdxjbhierunvdzo0z4ez.webp",
-    "https://i.postimg.cc/t4X4d034/jmdgjdavwkquobbmjn3c.webp",
-    "https://i.postimg.cc/fRwR74cM/khnoj08xbhlcosoi5i8d.webp",
-    "https://i.postimg.cc/MpWp0k7T/lu1hiv3yqccakf6wsgx1.webp",
-    "https://i.postimg.cc/7ZxZ1v3C/wjhflkcjdyfwn5yqtmo9.webp",
-    "https://i.postimg.cc/CxFxCyGB/y2n7cly0hjom72zr1hwr.webp"
-  ]
-},
+      {
+        name: "Events",
+        images: [
+          "https://i.postimg.cc/Prbq8fwk/gdxjbhierunvdzo0z4ez.webp",
+          "https://i.postimg.cc/t4X4d034/jmdgjdavwkquobbmjn3c.webp",
+          "https://i.postimg.cc/fRwR74cM/khnoj08xbhlcosoi5i8d.webp",
+          "https://i.postimg.cc/MpWp0k7T/lu1hiv3yqccakf6wsgx1.webp",
+          "https://i.postimg.cc/7ZxZ1v3C/wjhflkcjdyfwn5yqtmo9.webp",
+          "https://i.postimg.cc/CxFxCyGB/y2n7cly0hjom72zr1hwr.webp"
+        ]
+      },
       {
         name: "Fashion",
-    images: [
-  "https://i.postimg.cc/8cJysPP1/DSC05259-copy.webp",
-  "https://i.postimg.cc/MTG32mCk/DSC05367-copy.webp",
-  "https://i.postimg.cc/LX0CHZSn/DSC05662-copy.webp",
-  "https://i.postimg.cc/sxQn1DfK/MAV01017.webp",
-  "https://i.postimg.cc/j5j304pd/MAV01155.webp",
-  "https://i.postimg.cc/pTdcbJwm/MAV01615.webp",
-  "https://i.postimg.cc/j5j304pL/MAV01833.webp",
-  "https://i.postimg.cc/8cJysPPS/MAV03713.webp",
-  "https://i.postimg.cc/PJp6Nrfy/MAV03908.webp",
-  "https://i.postimg.cc/nzwRHQx0/MAV06622.webp"
-]
-      }, 
-
-        {
-      name: "Sleepycat",
- images: [
-  "https://i.postimg.cc/gjMbv03h/MAV05674.jpg",
-  "https://i.postimg.cc/x1NVzn8L/MAV05675.jpg",
-  "https://i.postimg.cc/W1qckTz9/MAV05921.jpg",
-  "https://i.postimg.cc/0yK1wPj4/MAV05977.jpg",
-  "https://i.postimg.cc/3x0QvYN6/MAV06015.jpg",
-  "https://i.postimg.cc/MGk20NjZ/MAV06036.jpg"
-]
-    }
+        images: [
+          "https://i.postimg.cc/8cJysPP1/DSC05259-copy.webp",
+          "https://i.postimg.cc/MTG32mCk/DSC05367-copy.webp",
+          "https://i.postimg.cc/LX0CHZSn/DSC05662-copy.webp",
+          "https://i.postimg.cc/sxQn1DfK/MAV01017.webp",
+          "https://i.postimg.cc/j5j304pd/MAV01155.webp",
+          "https://i.postimg.cc/pTdcbJwm/MAV01615.webp",
+          "https://i.postimg.cc/j5j304pL/MAV01833.webp",
+          "https://i.postimg.cc/8cJysPPS/MAV03713.webp",
+          "https://i.postimg.cc/PJp6Nrfy/MAV03908.webp",
+          "https://i.postimg.cc/nzwRHQx0/MAV06622.webp"
+        ]
+      },
+      {
+        name: "Sleepycat",
+        images: [
+          "https://i.postimg.cc/gjMbv03h/MAV05674.jpg",
+          "https://i.postimg.cc/x1NVzN8L/MAV05675.jpg",
+          "https://i.postimg.cc/W1qckTz9/MAV05921.jpg",
+          "https://i.postimg.cc/0yK1wPj4/MAV05977.jpg",
+          "https://i.postimg.cc/3x0QvYN6/MAV06015.jpg",
+          "https://i.postimg.cc/MGk20NjZ/MAV06036.jpg"
+        ]
+      }
     ]
   },
 

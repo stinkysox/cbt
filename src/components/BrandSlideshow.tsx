@@ -49,7 +49,7 @@ const useSlideshow = (imageCount: number, active: boolean) => {
   return { currentIndex, progress, goTo };
 };
 
-/* ── Single featured slideshow panel ── */
+/* ── Single featured slideshow panel (ALL internal text white) ── */
 const FeaturedSlideshow = ({
   brand,
 }: {
@@ -59,7 +59,6 @@ const FeaturedSlideshow = ({
 
   return (
     <div className="relative w-full h-full overflow-hidden rounded-2xl bg-[#0e0e0e]">
-      {/* Image */}
       <AnimatePresence mode="wait">
         <motion.img
           key={`${brand.name}-${currentIndex}`}
@@ -72,14 +71,12 @@ const FeaturedSlideshow = ({
         />
       </AnimatePresence>
 
-      {/* Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
 
-      {/* Bottom content */}
       <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10">
         <span
-          className="block mb-2 text-xs font-mono tracking-[0.3em] uppercase"
-          style={{ color: "var(--accent, #e34a4a)" }}
+          className="block mb-2 text-xs font-mono tracking-[0.3em] uppercase text-white/80"
+          // Removed var(--accent) to force white
         >
           Digital Transformation & Strategy
         </span>
@@ -91,7 +88,7 @@ const FeaturedSlideshow = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="font-black text-white leading-none mb-6"
+            className="font-black leading-none mb-6 text-white" 
             style={{
               fontFamily: "Georgia, 'Times New Roman', serif",
               fontSize: "clamp(40px, 5vw, 72px)",
@@ -102,7 +99,6 @@ const FeaturedSlideshow = ({
           </motion.h3>
         </AnimatePresence>
 
-        {/* Progress indicators */}
         <div className="flex items-center gap-2">
           {brand.images.map((_, idx) => (
             <button
@@ -128,7 +124,7 @@ const FeaturedSlideshow = ({
   );
 };
 
-/* ── Brand list item (sidebar) ── */
+/* ── Brand list item (Sidebar - Theme Responsive) ── */
 const BrandListItem = ({
   brand,
   index,
@@ -142,13 +138,13 @@ const BrandListItem = ({
 }) => (
   <button
     onClick={onClick}
-    className="group w-full text-left flex items-center gap-4 py-4 border-b border-white/[0.06] transition-colors duration-200 hover:border-white/20 focus:outline-none"
+    className={`group w-full text-left flex items-center gap-4 py-6 border-b transition-colors duration-200 focus:outline-none ${
+      isActive ? "border-foreground/20" : "border-foreground/5 hover:border-foreground/10"
+    }`}
   >
-    {/* Active bar */}
-    <div className="relative w-[2px] h-8 rounded-full overflow-hidden shrink-0">
-      <div className="absolute inset-0 bg-white/10" />
+    <div className="relative w-[2px] h-8 rounded-full overflow-hidden shrink-0 bg-foreground/10">
       <motion.div
-        className="absolute inset-0 bg-white rounded-full"
+        className="absolute inset-0 bg-foreground"
         initial={false}
         animate={{ scaleY: isActive ? 1 : 0, originY: 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
@@ -156,36 +152,33 @@ const BrandListItem = ({
     </div>
 
     <span
-      className="font-mono text-xs tracking-widest tabular-nums transition-colors duration-200"
-      style={{ color: isActive ? "var(--accent, #e34a4a)" : "rgba(255,255,255,0.3)" }}
+      className={`font-mono text-xs tracking-widest tabular-nums transition-colors duration-200 ${
+        isActive ? "text-foreground" : "text-foreground/30"
+      }`}
     >
       {String(index + 1).padStart(2, "0")}
     </span>
 
     <span
-      className="font-black leading-none transition-colors duration-200"
+      className={`font-black leading-none transition-colors duration-200 ${
+        isActive ? "text-foreground" : "text-foreground/30"
+      }`}
       style={{
         fontFamily: "Georgia, 'Times New Roman', serif",
         fontSize: "clamp(20px, 2.2vw, 30px)",
         letterSpacing: "-0.02em",
-        color: isActive ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.35)",
       }}
     >
       {brand.name}
     </span>
 
-    {/* Thumbnail on hover */}
-    <div className="ml-auto shrink-0 w-10 h-10 rounded-lg overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-      <img
-        src={brand.images[0]}
-        alt=""
-        className="w-full h-full object-cover"
-      />
+    <div className="ml-auto shrink-0 w-12 h-12 rounded-lg overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+      <img src={brand.images[0]} alt="" className="w-full h-full object-cover" />
     </div>
   </button>
 );
 
-/* ── Mobile card (single, plays only when active) ── */
+/* ── Mobile card ── */
 const MobileCard = ({
   brand,
   index,
@@ -205,29 +198,29 @@ const MobileCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.06 }}
-      className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0e0e0e] cursor-pointer"
-      style={{ height: isActive ? "clamp(280px, 60vw, 400px)" : 80 }}
+      className={`relative overflow-hidden rounded-2xl border cursor-pointer transition-colors duration-300 ${
+        isActive ? "border-transparent bg-[#0e0e0e]" : "border-foreground/10 bg-transparent"
+      }`}
+      style={{ height: isActive ? "clamp(300px, 65vw, 450px)" : 85 }}
       onClick={onClick}
     >
-      {/* Collapsed state */}
       {!isActive && (
         <div className="absolute inset-0 flex items-center px-6 gap-4 z-10">
-          <span className="font-mono text-xs text-white/30 tabular-nums">
+          <span className="font-mono text-xs text-foreground/30 tabular-nums">
             {String(index + 1).padStart(2, "0")}
           </span>
           <span
-            className="font-black text-white/50 leading-none"
+            className="font-black text-foreground/60 leading-none"
             style={{ fontFamily: "Georgia, serif", fontSize: 22 }}
           >
             {brand.name}
           </span>
-          <div className="ml-auto w-10 h-10 rounded-lg overflow-hidden opacity-60">
+          <div className="ml-auto w-10 h-10 rounded-lg overflow-hidden opacity-40 grayscale transition-all">
             <img src={brand.images[0]} alt="" className="w-full h-full object-cover" />
           </div>
         </div>
       )}
 
-      {/* Expanded state */}
       {isActive && (
         <>
           <AnimatePresence mode="wait">
@@ -241,9 +234,9 @@ const MobileCard = ({
               className="absolute inset-0 w-full h-full object-cover"
             />
           </AnimatePresence>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
           <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">
-            <span className="font-mono text-xs tracking-[0.3em] uppercase mb-2" style={{ color: "var(--accent, #e34a4a)" }}>
+            <span className="font-mono text-xs tracking-[0.3em] uppercase mb-2 text-white/70">
               Digital Transformation & Strategy
             </span>
             <h3
@@ -258,7 +251,7 @@ const MobileCard = ({
                   key={idx}
                   onClick={(e) => { e.stopPropagation(); goTo(idx); }}
                   className="relative h-[2px] rounded-full overflow-hidden focus:outline-none"
-                  style={{ width: idx === currentIndex ? 40 : 16, background: "rgba(255,255,255,0.25)" }}
+                  style={{ width: idx === currentIndex ? 40 : 16, background: "rgba(255,255,255,0.3)" }}
                 >
                   {idx === currentIndex && (
                     <div className="absolute inset-y-0 left-0 bg-white rounded-full" style={{ width: `${progress}%` }} />
@@ -281,7 +274,6 @@ const BrandSlideshow = () => {
   return (
     <section className="relative overflow-hidden bg-background py-24 md:py-32">
       <div className="relative mx-auto max-w-6xl px-5 md:px-10">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -289,7 +281,7 @@ const BrandSlideshow = () => {
           transition={{ duration: 0.7 }}
           className="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
-          <div>
+          <div className="max-w-2xl">
             <span
               className="block mb-4 text-xs font-mono tracking-[0.45em] uppercase"
               style={{ color: "var(--accent, #e34a4a)" }}
@@ -297,7 +289,7 @@ const BrandSlideshow = () => {
               Impact
             </span>
             <h2
-              className="text-5xl md:text-7xl font-black leading-none tracking-tight text-foreground"
+              className="text-5xl md:text-7xl font-black leading-[0.9] tracking-tight text-foreground"
               style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
             >
               {title}
@@ -308,10 +300,8 @@ const BrandSlideshow = () => {
           </p>
         </motion.div>
 
-        {/* ── Desktop: sidebar + featured panel ── */}
-        <div className="hidden md:grid gap-8" style={{ gridTemplateColumns: "1fr 1.6fr" }}>
-          {/* Brand list */}
-          <nav className="flex flex-col pt-2">
+        <div className="hidden md:grid gap-12 items-start" style={{ gridTemplateColumns: "1fr 1.6fr" }}>
+          <nav className="flex flex-col">
             {brands.map((brand, index) => (
               <BrandListItem
                 key={brand.name}
@@ -323,20 +313,18 @@ const BrandSlideshow = () => {
             ))}
           </nav>
 
-          {/* Featured panel */}
           <motion.div
             key={activeBrand}
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            style={{ height: "clamp(400px, 50vw, 620px)" }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            style={{ height: "clamp(450px, 50vw, 650px)" }}
           >
             <FeaturedSlideshow brand={brands[activeBrand]} />
           </motion.div>
         </div>
 
-        {/* ── Mobile: accordion cards ── */}
-        <div className="flex flex-col gap-3 md:hidden">
+        <div className="flex flex-col gap-4 md:hidden">
           {brands.map((brand, index) => (
             <MobileCard
               key={brand.name}

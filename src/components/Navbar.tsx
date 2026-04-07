@@ -42,7 +42,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <Link to="/" className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight z-50">
-          {siteData.global.brandName}
+          {siteData.global.shortForm}
         </Link>
 
         {/* Desktop Navigation */}
