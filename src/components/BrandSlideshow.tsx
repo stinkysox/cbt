@@ -1,191 +1,285 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { siteData } from "@/data/content";
 
-const BrandSlideshowCard = ({
-  brand,
-  index,
-}: {
-  brand: { name: string; images: string[] };
-  index: number;
-}) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const DURATION = 4000;
+const DURATION = 5000;
 
-  const startTimer = () => {
-    setProgress(0);
-    const startTime = Date.now();
-    intervalRef.current = setInterval(() => {
-      const elapsed = Date.now() - startTime;
+const useSlideshow = (imageCount: number, active: boolean) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const rafRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number>(0);
+
+  const tick = useCallback(
+    (timestamp: number) => {
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      const elapsed = timestamp - startTimeRef.current;
       const pct = Math.min((elapsed / DURATION) * 100, 100);
       setProgress(pct);
+
       if (elapsed >= DURATION) {
-        setCurrentIndex((prev) => (prev + 1) % brand.images.length);
-        clearInterval(intervalRef.current!);
-        startTimer();
+        setCurrentIndex((prev) => (prev + 1) % imageCount);
+        startTimeRef.current = 0;
       }
-    }, 30);
-  };
+
+      rafRef.current = requestAnimationFrame(tick);
+    },
+    [imageCount]
+  );
 
   useEffect(() => {
-    startTimer();
-    return () => clearInterval(intervalRef.current!);
-  }, [brand.images.length]);
+    if (!active) {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      setProgress(0);
+      return;
+    }
+    startTimeRef.current = 0;
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [active, tick]);
 
   const goTo = (idx: number) => {
-    clearInterval(intervalRef.current!);
+    startTimeRef.current = 0;
     setCurrentIndex(idx);
-    setTimeout(() => startTimer(), 0);
+    setProgress(0);
   };
 
-  const isEven = index % 2 === 0;
+  return { currentIndex, progress, goTo };
+};
+
+/* ── Single featured slideshow panel ── */
+const FeaturedSlideshow = ({
+  brand,
+}: {
+  brand: { name: string; images: string[] };
+}) => {
+  const { currentIndex, progress, goTo } = useSlideshow(brand.images.length, true);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
-      className="group relative w-full overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0e0e0e]"
-      style={{ height: "clamp(300px, 38vw, 480px)" }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Full-bleed image */}
+    <div className="relative w-full h-full overflow-hidden rounded-2xl bg-[#0e0e0e]">
+      {/* Image */}
       <AnimatePresence mode="wait">
         <motion.img
-          key={currentIndex}
+          key={`${brand.name}-${currentIndex}`}
           src={brand.images[currentIndex]}
-          initial={{ opacity: 0, scale: 1.08 }}
-          animate={{ opacity: 1, scale: isHovered ? 1.04 : 1 }}
-          exit={{ opacity: 0, scale: 0.96 }}
-          transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           className="absolute inset-0 w-full h-full object-cover"
         />
       </AnimatePresence>
 
-      {/* Gradient overlay — heavier on brand-name side */}
-      <div
-        className={`absolute inset-0 z-10 ${
-          isEven
-            ? "bg-gradient-to-r from-black/90 via-black/50 to-black/10"
-            : "bg-gradient-to-l from-black/90 via-black/50 to-black/10"
-        }`}
-      />
-      {/* Bottom vignette */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+      {/* Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
 
-      {/* Index number — watermark */}
-      <div
-        className={`absolute top-0 ${
-          isEven ? "right-0" : "left-0"
-        } z-20 p-7 select-none pointer-events-none`}
-      >
+      {/* Bottom content */}
+      <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10">
         <span
-          className="text-white/[0.06] font-black leading-none"
-          style={{
-            fontSize: "clamp(80px, 14vw, 160px)",
-            fontFamily: "Georgia, serif",
-            letterSpacing: "-0.04em",
-          }}
+          className="block mb-2 text-xs font-mono tracking-[0.3em] uppercase"
+          style={{ color: "var(--accent, #e34a4a)" }}
         >
-          {String(index + 1).padStart(2, "0")}
+          Digital Transformation & Strategy
         </span>
-      </div>
 
-      {/* Brand content */}
-      <div
-        className={`absolute inset-0 z-20 flex flex-col justify-between p-8 md:p-12 ${
-          isEven ? "" : "items-end text-right"
-        }`}
-      >
-        {/* Top row */}
-        <div className={`flex items-center justify-between w-full`}>
-          {/* Counter */}
-          <span className="text-white/40 text-xs font-mono tracking-widest tabular-nums">
-            {String(currentIndex + 1).padStart(2, "0")} /{" "}
-            {String(brand.images.length).padStart(2, "0")}
-          </span>
-
-          {/* Progress dots */}
-          <div className="flex items-center gap-2">
-            {brand.images.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => goTo(idx)}
-                className="relative h-[3px] rounded-full overflow-hidden transition-all duration-300 focus:outline-none"
-                style={{
-                  width: idx === currentIndex ? 40 : 16,
-                  background: "rgba(255,255,255,0.2)",
-                }}
-              >
-                {idx === currentIndex && (
-                  <motion.div
-                    className="absolute inset-y-0 left-0 bg-white rounded-full"
-                    style={{ width: `${progress}%` }}
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom: brand name + subtitle (CTA row removed) */}
-        <div className={`${isEven ? "" : "flex flex-col items-end"}`}>
-          {/* Tag */}
-          <motion.span
-            className="inline-block text-xs font-mono tracking-[0.3em] uppercase mb-3"
-            style={{ color: "var(--accent, #e34a4a)" }}
-            animate={{ opacity: isHovered ? 1 : 0.7 }}
-          >
-            Digital Transformation & Strategy
-          </motion.span>
-
-          {/* Brand name */}
+        <AnimatePresence mode="wait">
           <motion.h3
-            className="font-black text-white leading-none"
+            key={brand.name}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="font-black text-white leading-none mb-6"
             style={{
               fontFamily: "Georgia, 'Times New Roman', serif",
-              fontSize: "clamp(48px, 8vw, 100px)",
+              fontSize: "clamp(40px, 5vw, 72px)",
               letterSpacing: "-0.03em",
-              textShadow: "0 4px 40px rgba(0,0,0,0.5)",
             }}
-            animate={{ y: isHovered ? -6 : 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
           >
             {brand.name}
           </motion.h3>
+        </AnimatePresence>
+
+        {/* Progress indicators */}
+        <div className="flex items-center gap-2">
+          {brand.images.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => goTo(idx)}
+              className="relative h-[2px] rounded-full overflow-hidden focus:outline-none transition-all duration-300"
+              style={{
+                width: idx === currentIndex ? 48 : 20,
+                background: "rgba(255,255,255,0.25)",
+              }}
+            >
+              {idx === currentIndex && (
+                <div
+                  className="absolute inset-y-0 left-0 bg-white rounded-full"
+                  style={{ width: `${progress}%` }}
+                />
+              )}
+            </button>
+          ))}
         </div>
       </div>
+    </div>
+  );
+};
 
-      {/* Hover border glow */}
+/* ── Brand list item (sidebar) ── */
+const BrandListItem = ({
+  brand,
+  index,
+  isActive,
+  onClick,
+}: {
+  brand: { name: string; images: string[] };
+  index: number;
+  isActive: boolean;
+  onClick: () => void;
+}) => (
+  <button
+    onClick={onClick}
+    className="group w-full text-left flex items-center gap-4 py-4 border-b border-white/[0.06] transition-colors duration-200 hover:border-white/20 focus:outline-none"
+  >
+    {/* Active bar */}
+    <div className="relative w-[2px] h-8 rounded-full overflow-hidden shrink-0">
+      <div className="absolute inset-0 bg-white/10" />
       <motion.div
-        className="absolute inset-0 z-30 rounded-2xl pointer-events-none"
-        style={{ border: "1px solid rgba(255,255,255,0.12)" }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
+        className="absolute inset-0 bg-white rounded-full"
+        initial={false}
+        animate={{ scaleY: isActive ? 1 : 0, originY: 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       />
+    </div>
+
+    <span
+      className="font-mono text-xs tracking-widest tabular-nums transition-colors duration-200"
+      style={{ color: isActive ? "var(--accent, #e34a4a)" : "rgba(255,255,255,0.3)" }}
+    >
+      {String(index + 1).padStart(2, "0")}
+    </span>
+
+    <span
+      className="font-black leading-none transition-colors duration-200"
+      style={{
+        fontFamily: "Georgia, 'Times New Roman', serif",
+        fontSize: "clamp(20px, 2.2vw, 30px)",
+        letterSpacing: "-0.02em",
+        color: isActive ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.35)",
+      }}
+    >
+      {brand.name}
+    </span>
+
+    {/* Thumbnail on hover */}
+    <div className="ml-auto shrink-0 w-10 h-10 rounded-lg overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <img
+        src={brand.images[0]}
+        alt=""
+        className="w-full h-full object-cover"
+      />
+    </div>
+  </button>
+);
+
+/* ── Mobile card (single, plays only when active) ── */
+const MobileCard = ({
+  brand,
+  index,
+  isActive,
+  onClick,
+}: {
+  brand: { name: string; images: string[] };
+  index: number;
+  isActive: boolean;
+  onClick: () => void;
+}) => {
+  const { currentIndex, progress, goTo } = useSlideshow(brand.images.length, isActive);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.06 }}
+      className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0e0e0e] cursor-pointer"
+      style={{ height: isActive ? "clamp(280px, 60vw, 400px)" : 80 }}
+      onClick={onClick}
+    >
+      {/* Collapsed state */}
+      {!isActive && (
+        <div className="absolute inset-0 flex items-center px-6 gap-4 z-10">
+          <span className="font-mono text-xs text-white/30 tabular-nums">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span
+            className="font-black text-white/50 leading-none"
+            style={{ fontFamily: "Georgia, serif", fontSize: 22 }}
+          >
+            {brand.name}
+          </span>
+          <div className="ml-auto w-10 h-10 rounded-lg overflow-hidden opacity-60">
+            <img src={brand.images[0]} alt="" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
+
+      {/* Expanded state */}
+      {isActive && (
+        <>
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentIndex}
+              src={brand.images[currentIndex]}
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+          <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">
+            <span className="font-mono text-xs tracking-[0.3em] uppercase mb-2" style={{ color: "var(--accent, #e34a4a)" }}>
+              Digital Transformation & Strategy
+            </span>
+            <h3
+              className="font-black text-white leading-none mb-4"
+              style={{ fontFamily: "Georgia, serif", fontSize: "clamp(32px, 8vw, 48px)", letterSpacing: "-0.03em" }}
+            >
+              {brand.name}
+            </h3>
+            <div className="flex items-center gap-2">
+              {brand.images.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => { e.stopPropagation(); goTo(idx); }}
+                  className="relative h-[2px] rounded-full overflow-hidden focus:outline-none"
+                  style={{ width: idx === currentIndex ? 40 : 16, background: "rgba(255,255,255,0.25)" }}
+                >
+                  {idx === currentIndex && (
+                    <div className="absolute inset-y-0 left-0 bg-white rounded-full" style={{ width: `${progress}%` }} />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </motion.div>
   );
 };
 
+/* ── Main section ── */
 const BrandSlideshow = () => {
   const { title, subtitle, brands } = siteData.brandShowcase;
+  const [activeBrand, setActiveBrand] = useState(0);
 
   return (
     <section className="relative overflow-hidden bg-background py-24 md:py-32">
-      {/* Subtle background texture */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
-
       <div className="relative mx-auto max-w-6xl px-5 md:px-10">
         {/* Header */}
         <motion.div
@@ -214,10 +308,43 @@ const BrandSlideshow = () => {
           </p>
         </motion.div>
 
-        {/* Vertical stack */}
-        <div className="flex flex-col gap-4 md:gap-5">
+        {/* ── Desktop: sidebar + featured panel ── */}
+        <div className="hidden md:grid gap-8" style={{ gridTemplateColumns: "1fr 1.6fr" }}>
+          {/* Brand list */}
+          <nav className="flex flex-col pt-2">
+            {brands.map((brand, index) => (
+              <BrandListItem
+                key={brand.name}
+                brand={brand}
+                index={index}
+                isActive={activeBrand === index}
+                onClick={() => setActiveBrand(index)}
+              />
+            ))}
+          </nav>
+
+          {/* Featured panel */}
+          <motion.div
+            key={activeBrand}
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            style={{ height: "clamp(400px, 50vw, 620px)" }}
+          >
+            <FeaturedSlideshow brand={brands[activeBrand]} />
+          </motion.div>
+        </div>
+
+        {/* ── Mobile: accordion cards ── */}
+        <div className="flex flex-col gap-3 md:hidden">
           {brands.map((brand, index) => (
-            <BrandSlideshowCard key={brand.name} brand={brand} index={index} />
+            <MobileCard
+              key={brand.name}
+              brand={brand}
+              index={index}
+              isActive={activeBrand === index}
+              onClick={() => setActiveBrand(index)}
+            />
           ))}
         </div>
       </div>

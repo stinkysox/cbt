@@ -522,28 +522,44 @@ export const siteData = {
   "https://i.postimg.cc/qMsrsr0x/Whats-App-Image-2026-04-03-at-3-41-21-PM.jpg"
 ]
       },
+    {
+  name: "Events",
+  images: [
+    "https://i.postimg.cc/Prbq8fwk/gdxjbhierunvdzo0z4ez.webp",
+    "https://i.postimg.cc/t4X4d034/jmdgjdavwkquobbmjn3c.webp",
+    "https://i.postimg.cc/fRwR74cM/khnoj08xbhlcosoi5i8d.webp",
+    "https://i.postimg.cc/MpWp0k7T/lu1hiv3yqccakf6wsgx1.webp",
+    "https://i.postimg.cc/7ZxZ1v3C/wjhflkcjdyfwn5yqtmo9.webp",
+    "https://i.postimg.cc/CxFxCyGB/y2n7cly0hjom72zr1hwr.webp"
+  ]
+},
       {
-        name: "LG",
-        images: [
-          "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1593359674241-55cd4bd7e37a?q=80&w=2070&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1526738549149-8e07eca270b4?q=80&w=2070&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=2070&auto=format&fit=crop"
-        ]
-      },
-      {
-        name: "Apple",
-        images: [
-          "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1926&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1491933382434-500287f9b54b?q=80&w=2000&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1522204538344-922f76ece041?q=80&w=2071&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1512054191704-94bc97223630?q=80&w=2070&auto=format&fit=crop"
-        ]
-      }
+        name: "Fashion",
+    images: [
+  "https://i.postimg.cc/8cJysPP1/DSC05259-copy.webp",
+  "https://i.postimg.cc/MTG32mCk/DSC05367-copy.webp",
+  "https://i.postimg.cc/LX0CHZSn/DSC05662-copy.webp",
+  "https://i.postimg.cc/sxQn1DfK/MAV01017.webp",
+  "https://i.postimg.cc/j5j304pd/MAV01155.webp",
+  "https://i.postimg.cc/pTdcbJwm/MAV01615.webp",
+  "https://i.postimg.cc/j5j304pL/MAV01833.webp",
+  "https://i.postimg.cc/8cJysPPS/MAV03713.webp",
+  "https://i.postimg.cc/PJp6Nrfy/MAV03908.webp",
+  "https://i.postimg.cc/nzwRHQx0/MAV06622.webp"
+]
+      }, 
+
+        {
+      name: "Sleepycat",
+ images: [
+  "https://i.postimg.cc/gjMbv03h/MAV05674.jpg",
+  "https://i.postimg.cc/x1NVzn8L/MAV05675.jpg",
+  "https://i.postimg.cc/W1qckTz9/MAV05921.jpg",
+  "https://i.postimg.cc/0yK1wPj4/MAV05977.jpg",
+  "https://i.postimg.cc/3x0QvYN6/MAV06015.jpg",
+  "https://i.postimg.cc/MGk20NjZ/MAV06036.jpg"
+]
+    }
     ]
   },
 
