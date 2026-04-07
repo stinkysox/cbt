@@ -42,6 +42,7 @@ const Work = () => {
         <BrandSlideshow />
 
         {/* Phase 5 Project Spotlight (Horizontal Scroll) */}
+        <ProjectSpotlight />
 
         {/* CTA Section */}
         <section className="py-32 px-6 bg-foreground text-primary-foreground text-center relative overflow-hidden">

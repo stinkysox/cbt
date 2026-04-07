@@ -2,6 +2,7 @@ import HeroSection from "@/components/HeroSection";
 import MarqueeSection from "@/components/MarqueeSection";
 import ColorPsychologySection from "@/components/ColorPsychologySection";
 import BentoGallery from "@/components/BentoGallery";
+import ProjectSpotlight from "@/components/ProjectSpotlight";
 import WeddingSection from "@/components/WeddingSection";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -19,6 +20,9 @@ const Index = () => {
       
       {/* Dynamic interactive bento grid gallery displaying work/highlights */}
       <BentoGallery />
+
+      {/* Project Spotlight - Horizontal scroll showcase */}
+      <ProjectSpotlight />
 
       {/* Wedding Artistry Section */}
       <WeddingSection />

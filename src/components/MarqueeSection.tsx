@@ -1,5 +1,5 @@
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { siteData } from "@/data/content";
 
 const MarqueeSection = () => {

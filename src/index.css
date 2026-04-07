@@ -163,6 +163,7 @@
       hsl(var(--accent) / 0.15),
       transparent 60%
     );
+    will-change: opacity;
   }
 
   .magnetic-btn:hover::after {
@@ -212,10 +213,10 @@
   background: linear-gradient(
     90deg,
     transparent         0%,
-    var(--shimmer-sweep) 40%,
-    transparent         100%
+    var(--shimmer-sweep) 45%,
+    transparent         90%
   );
-  animation: shimmer-slide 1.5s ease-in-out infinite;
+  animation: shimmer-slide 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /*

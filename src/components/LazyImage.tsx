@@ -1,33 +1,35 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 
 interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
   className?: string;
   shimmerClassName?: string;
+  variant?: "sweep" | "pulse";
 }
 
 /**
- * LazyImage — drops in as a replacement for <img>.
- * Shows an animated shimmer skeleton until the image finishes loading,
- * then cross-fades to the real image.
+ * LazyImage — optimized replacement for <img>.
+ * Supports sweep (moving highlight) and pulse (gentle fade) loading states.
  */
-const LazyImage = ({
+const LazyImage = memo(({
   src,
   alt,
   className = "",
   shimmerClassName = "",
+  variant = "sweep",
   ...rest
 }: LazyImageProps) => {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
+  const shimmerClass = variant === "sweep" ? "lazy-shimmer" : "lazy-shimmer--pulse";
+
   return (
-    <span className="lazy-image-wrapper" style={{ display: "contents" }}>
-      {/* Shimmer placeholder — hidden once the image loads */}
+    <>
       {!loaded && !error && (
         <span
-          className={`lazy-shimmer ${shimmerClassName}`}
+          className={`${shimmerClass} ${shimmerClassName}`}
           aria-hidden="true"
         />
       )}
@@ -42,8 +44,10 @@ const LazyImage = ({
         className={`${className} lazy-image ${loaded ? "lazy-image--loaded" : "lazy-image--loading"}`}
         {...rest}
       />
-    </span>
+    </>
   );
-};
+});
+
+LazyImage.displayName = "LazyImage";
 
 export default LazyImage;

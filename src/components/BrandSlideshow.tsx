@@ -4,59 +4,7 @@ import { siteData } from "@/data/content";
 
 const DURATION = 5000;
 
-// ── Shimmer skeleton ──
-const ShimmerBox = ({ className = "" }: { className?: string }) => (
-  <div
-    className={`relative overflow-hidden bg-foreground/5 ${className}`}
-    aria-hidden="true"
-  >
-    <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.4s_infinite] bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
-  </div>
-);
-
-// Add to your global CSS (or a <style> tag in your layout):
-// @keyframes shimmer { to { transform: translateX(100%) } }
-
-// ── Lazy image with shimmer ──
-const LazyImage = memo(({
-  src,
-  alt,
-  className = "",
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) => {
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    // If already cached, naturalWidth > 0 immediately
-    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
-      setLoaded(true);
-    }
-  }, [src]);
-
-  return (
-    <div className="relative w-full h-full">
-      {!loaded && !error && (
-        <ShimmerBox className="absolute inset-0 rounded-inherit" />
-      )}
-      <img
-        ref={imgRef}
-        src={src}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        onLoad={() => setLoaded(true)}
-        onError={() => setError(true)}
-        className={`${className} transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
-      />
-    </div>
-  );
-});
-LazyImage.displayName = "LazyImage";
+import LazyImage from "./LazyImage";
 
 // ── Slideshow image with shimmer (used inside dark overlay panels) ──
 const SlideshowImage = memo(({
@@ -79,7 +27,7 @@ const SlideshowImage = memo(({
   return (
     <>
       {!loaded && (
-        <div className="absolute inset-0 bg-foreground/10 animate-pulse z-0" />
+        <div className="lazy-shimmer--pulse z-0" />
       )}
       <AnimatePresence mode="wait">
         <motion.img
