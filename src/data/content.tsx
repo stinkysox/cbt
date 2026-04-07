@@ -3,7 +3,7 @@ import { Lightbulb, Palette, Layout, Globe, Pen, Film } from "lucide-react";
 export const siteData = {
   // Global / Branding Settings
   global: {
-    brandName: "Creativity Beyond Thoughts",
+    brandName: "Creativity Beyond Thought",
     shortForm: "CBT",
     tagline: "Building beyond the ordinary. Your partner in design, video and digital excellence.",
     ctaText: "Let's Talk",
