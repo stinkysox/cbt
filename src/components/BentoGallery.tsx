@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { siteData } from "@/data/content";
+import LazyImage from "@/components/LazyImage";
 
 const BentoGallery = () => {
   const { items } = siteData.bentoGallery;
@@ -44,7 +45,7 @@ const BentoGallery = () => {
               <div className="absolute inset-0 bg-black/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               {/* Background Image */}
-              <img
+              <LazyImage
                 src={item.image}
                 alt={item.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { siteData } from "@/data/content";
+import LazyImage from "@/components/LazyImage";
 
 const CreativeMenu = () => {
   const images = [
@@ -38,7 +39,7 @@ const CreativeMenu = () => {
               className="flex flex-col gap-6"
             >
                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group">
-                  <img 
+                  <LazyImage 
                     src={images[index % images.length]} 
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

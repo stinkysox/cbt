@@ -472,7 +472,6 @@ export const siteData = {
         name: "Sleepycat",
         images: [
           "https://i.postimg.cc/gjMbv03h/MAV05674.jpg",
-          "https://i.postimg.cc/x1NVzN8L/MAV05675.jpg",
           "https://i.postimg.cc/W1qckTz9/MAV05921.jpg",
           "https://i.postimg.cc/0yK1wPj4/MAV05977.jpg",
           "https://i.postimg.cc/3x0QvYN6/MAV06015.jpg",

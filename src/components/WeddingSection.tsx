@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { siteData } from "@/data/content";
+import LazyImage from "@/components/LazyImage";
 
 const WeddingSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,7 +23,7 @@ const WeddingSection = () => {
     >
       {/* Parallax Background */}
       <motion.div style={{ y }} className="absolute inset-0 z-0 scale-110">
-        <img
+        <LazyImage
           src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
           alt="Wedding Cinematography"
           className="w-full h-full object-cover"

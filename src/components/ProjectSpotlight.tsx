@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { siteData } from "@/data/content";
+import LazyImage from "@/components/LazyImage";
 
 const ProjectSpotlight = () => {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -23,7 +24,7 @@ const ProjectSpotlight = () => {
               key={index} 
               className="group relative h-[60vh] md:h-[70vh] w-[80vw] md:w-[60vw] flex-shrink-0 overflow-hidden rounded-3xl bg-neutral-900 border border-white/5"
             >
-              <img 
+              <LazyImage 
                 src={project.image} 
                 alt={project.title}
                 className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-110"

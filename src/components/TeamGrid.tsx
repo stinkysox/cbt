@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { siteData } from "@/data/content";
+import LazyImage from "@/components/LazyImage";
 
 const TeamGrid = () => {
   return (
@@ -37,7 +38,7 @@ const TeamGrid = () => {
                   style={{ backgroundColor: member.energy }}
                 />
                 
-                <img 
+                <LazyImage 
                   src={member.image} 
                   alt={member.name}
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
