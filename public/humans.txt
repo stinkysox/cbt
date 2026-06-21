@@ -1,0 +1,17 @@
+/* TEAM */
+Studio: Creativity Beyond Thought
+Site: creativitybeyondthoughts.com
+Address: B-66, First Floor, New Rajinder Nagar, New Delhi 110060
+Location: New Delhi, India
+
+
+/* THANKS */
+To every client who trusted us with their brand.
+
+/* SITE */
+Last update: 2024/12/01
+Language: English
+Doctype: HTML5
+IDE: VS Code
+Standards: HTML5, CSS3, WCAG 2.1
+Components: React, Vite, TailwindCSS, Framer Motion

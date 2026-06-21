@@ -1,8 +1,20 @@
+# ─── Allow all crawlers ────────────────────────────────────────
+User-agent: *
+Allow: /
+
+# ─── Disallow admin/build artifacts ───────────────────────────
+Disallow: /assets/
+Disallow: /*.json$
+Disallow: /*.js.map$
+
+# ─── Specific crawlers ────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 5
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 10
 
 User-agent: Twitterbot
 Allow: /
@@ -10,5 +22,25 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# ─── Block bad bots ───────────────────────────────────────────
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# ─── Sitemap ──────────────────────────────────────────────────
+Sitemap: https://creativitybeyondthoughts.com/sitemap.xml
+Host: https://creativitybeyondthoughts.com

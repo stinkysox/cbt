@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { siteData } from "@/data/content";
-import ProjectSpotlight from "@/components/ProjectSpotlight";
 import BrandSlideshow from "@/components/BrandSlideshow";
 
 const Work = () => {
@@ -21,7 +20,7 @@ const Work = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-6xl md:text-8xl lg:text-[10rem] font-display font-black leading-[1.3] tracking-tighter mb-10 overflow-visible pt-6 pb-4"
+              className="text-5xl md:text-7xl lg:text-8xl font-display font-black leading-[1.3] tracking-tighter mb-10 overflow-visible pt-6 pb-4"
             >
               {siteData.whoWeAre.heroTitle1} <br />
               <span className="italic text-gradient inline-block pl-[0.1em] pr-[0.15em] pb-[0.15em] overflow-visible">{siteData.whoWeAre.heroTitleHighlight}</span> <br />
@@ -40,9 +39,6 @@ const Work = () => {
 
         {/* Brand Slideshow Section */}
         <BrandSlideshow />
-
-        {/* Phase 5 Project Spotlight (Horizontal Scroll) */}
-        <ProjectSpotlight />
 
         {/* CTA Section */}
         <section className="py-32 px-6 bg-foreground text-primary-foreground text-center relative overflow-hidden">

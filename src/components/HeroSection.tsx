@@ -79,7 +79,7 @@ const HeroSection = () => {
             1. Increased leading to 1.2 to ensure the browser allocates enough height for the font.
             2. Added overflow-visible to the h1.
         */}
-        <h1 className="text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-display font-bold leading-[1.1] tracking-tight mb-8 overflow-visible">
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold leading-[1.1] tracking-tight mb-8 overflow-visible">
           {siteData.hero.words.map((word, i) => (
             <motion.span
               key={`${word}-${i}`}

@@ -7,6 +7,9 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Layout from "./components/Layout";
 import PageTransition from "./components/PageTransition";
+import CookieConsent from "./components/CookieConsent";
+import WhatsAppFloat from "./components/WhatsAppFloat";
+
 
 // Lazy-loaded pages
 const Index = React.lazy(() => import("./pages/Index"));
@@ -64,7 +67,14 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
+        <CookieConsent />
+        <WhatsAppFloat />
         <AnimatedRoutes />
       </BrowserRouter>
     </TooltipProvider>

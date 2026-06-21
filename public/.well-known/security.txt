@@ -1,0 +1,6 @@
+Contact: mailto:hello@creativitybeyondthoughts.com
+Expires: 2027-12-31T23:59:59.000Z
+Acknowledgments: https://creativitybeyondthoughts.com/about
+Preferred-Languages: en
+Canonical: https://creativitybeyondthoughts.com/.well-known/security.txt
+Policy: https://creativitybeyondthoughts.com/privacy
