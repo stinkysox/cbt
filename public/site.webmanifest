@@ -1,5 +1,5 @@
 {
-  "name": "Creativity Beyond Thought",
+  "name": "Creativity Beyond Thoughts",
   "short_name": "CBT",
   "description": "A digital creative agency specializing in branding, visual identity, web design, and interactive digital experiences.",
   "start_url": "/",
@@ -50,7 +50,7 @@
       "src": "/cbt-preview.jpeg",
       "sizes": "1200x630",
       "type": "image/jpeg",
-      "label": "Creativity Beyond Thought – Home Page"
+      "label": "Creativity Beyond Thoughts – Home Page"
     }
   ],
   "shortcuts": [

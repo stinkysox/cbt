@@ -7,7 +7,7 @@ const sections = [
     icon: FileText,
     title: "1. Introduction & Acceptance",
     content: [
-      "These Terms and Conditions (\u201cTerms\u201d) constitute a legally binding agreement between you (\u201cClient,\u201d \u201cyou,\u201d or \u201cyour\u201d) and Creativity Beyond Thought (\u201cCBT,\u201d \u201cwe,\u201d \u201cus,\u201d or \u201cour\u201d), a creative agency with its registered office at B-66, First Floor, New Rajinder Nagar, New Delhi 110060, India.",
+      "These Terms and Conditions (\u201cTerms\u201d) constitute a legally binding agreement between you (\u201cClient,\u201d \u201cyou,\u201d or \u201cyour\u201d) and Creativity Beyond Thoughts (\u201cCBT,\u201d \u201cwe,\u201d \u201cus,\u201d or \u201cour\u201d), a creative agency with its registered office at B-66, First Floor, New Rajinder Nagar, New Delhi 110060, India.",
       "By accessing our website at creativitybeyondthoughts.com, submitting an inquiry, or engaging our services, you acknowledge that you have read, understood, and agree to be bound by these Terms in their entirety.",
       "If you do not agree with any part of these Terms, you must not use our website or engage our services. We reserve the right to update these Terms at any time; continued use of our services after any changes constitutes your acceptance of the revised Terms.",
     ],
@@ -16,7 +16,7 @@ const sections = [
     icon: Globe,
     title: "2. Services Offered",
     content: [
-      "Creativity Beyond Thought provides the following professional creative services: Brand Strategy & Positioning, Visual Identity Design (Logo, Typography, Color Systems, Brand Collateral), UI/UX Design & Prototyping, Web & App Development (Full-Stack), Video Production, Editing & Motion Graphics, 3D Animation, Social Media Content Creation, Wedding & Event Photography/Videography, and Digital Marketing Strategy.",
+      "Creativity Beyond Thoughts provides the following professional creative services: Brand Strategy & Positioning, Visual Identity Design (Logo, Typography, Color Systems, Brand Collateral), UI/UX Design & Prototyping, Web & App Development (Full-Stack), Video Production, Editing & Motion Graphics, 3D Animation, Social Media Content Creation, Wedding & Event Photography/Videography, and Digital Marketing Strategy.",
       "All services are subject to a separate, signed Statement of Work (SOW), Project Brief, or Service Agreement that details scope, deliverables, timelines, and pricing. Nothing in these Terms shall constitute a commitment by us to provide any specific service unless documented in a signed agreement.",
       "We reserve the right to decline or discontinue any project at our sole discretion, including situations involving unethical content, intellectual property infringement, or breach of these Terms.",
     ],
@@ -36,7 +36,7 @@ const sections = [
     icon: Lock,
     title: "4. Intellectual Property Rights",
     content: [
-      "All creative work, designs, concepts, code, videos, photographs, and materials produced by Creativity Beyond Thought remain the exclusive intellectual property of CBT until full payment of all agreed fees has been received.",
+      "All creative work, designs, concepts, code, videos, photographs, and materials produced by Creativity Beyond Thoughts remain the exclusive intellectual property of CBT until full payment of all agreed fees has been received.",
       "Upon receipt of full and final payment, ownership of the agreed deliverables (as specified in your SOW) shall transfer to you. This transfer includes final artwork, source files (where agreed), and associated assets.",
       "CBT retains the right to: (a) use all work produced in our portfolio, case studies, social media, marketing materials, and award submissions unless you specifically request otherwise in writing before project commencement; (b) retain copyright in preliminary concepts, unused designs, methodologies, and processes developed during the project.",
       "You must not reproduce, distribute, modify, or use any of our pre-existing intellectual property, tools, frameworks, or templates outside the scope of the delivered project without our explicit written consent.",
@@ -59,7 +59,7 @@ const sections = [
       "By using our website, you consent to our collection and use of data as described in our Privacy Policy. We collect personal information such as name, email address, phone number, and project details when you contact us via our website form, email, or WhatsApp.",
       "Our website uses cookies and similar tracking technologies to: (a) remember your preferences and settings; (b) analyse website traffic and user behaviour (via tools such as Google Analytics); (c) improve our services and content; (d) deliver relevant information and measure marketing effectiveness.",
       "You may manage your cookie preferences at any time using the cookie consent banner on our site, or through your browser settings. Note that disabling certain cookies may affect the functionality of our website.",
-      "By submitting a contact form on our website, you consent to being contacted by Creativity Beyond Thought via email, phone, or WhatsApp regarding your inquiry. You may opt out of communications at any time by contacting us directly.",
+      "By submitting a contact form on our website, you consent to being contacted by Creativity Beyond Thoughts via email, phone, or WhatsApp regarding your inquiry. You may opt out of communications at any time by contacting us directly.",
     ],
   },
   {
@@ -75,7 +75,7 @@ const sections = [
     icon: AlertTriangle,
     title: "8. Limitation of Liability & Disclaimers",
     content: [
-      "To the fullest extent permitted by applicable law, Creativity Beyond Thought and its directors, employees, and contractors shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, goodwill, or business opportunities, arising out of or in connection with your use of our services or website.",
+      "To the fullest extent permitted by applicable law, Creativity Beyond Thoughts and its directors, employees, and contractors shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, goodwill, or business opportunities, arising out of or in connection with your use of our services or website.",
       "Our total aggregate liability for any claim arising from our services shall not exceed the total fees paid by you to CBT in the three (3) months preceding the claim.",
       "Our website and services are provided on an 'as is' basis. We make no warranties, express or implied, regarding the accuracy, completeness, or fitness for a particular purpose of any content on our website.",
       "We are not responsible for any third-party platforms, tools, or services (including social media platforms, hosting providers, or payment gateways) referenced or integrated into delivered projects.",
@@ -184,7 +184,7 @@ const Terms = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-muted-foreground font-body max-w-2xl mx-auto leading-relaxed"
           >
-            Please read these terms carefully before using our services. By engaging with Creativity Beyond Thought, you agree to the following conditions.
+            Please read these terms carefully before using our services. By engaging with Creativity Beyond Thoughts, you agree to the following conditions.
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}

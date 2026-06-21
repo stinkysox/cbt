@@ -8,7 +8,7 @@
   <xsl:template match="/">
     <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
-        <title>XML Sitemap – Creativity Beyond Thought</title>
+        <title>XML Sitemap – Creativity Beyond Thoughts</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <style>
           * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,7 +28,7 @@
       </head>
       <body>
         <h1>XML Sitemap</h1>
-        <p>Creativity Beyond Thought — <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> URLs indexed</p>
+        <p>Creativity Beyond Thoughts — <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> URLs indexed</p>
         <table>
           <tr>
             <th>URL</th>

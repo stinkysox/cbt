@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const WHATSAPP_NUMBER = "918800180670";
 const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hi! I visited your website and I'd like to discuss a project with Creativity Beyond Thought."
+  "Hi! I visited your website and I'd like to discuss a project with Creativity Beyond Thoughts."
 );
 
 const WhatsAppFloat = () => {

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const WHATSAPP_NUMBER = "918800180670"; // country code + number, no +
 const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hi! I visited your website and I'd like to discuss a project with Creativity Beyond Thought."
+  "Hi! I visited your website and I'd like to discuss a project with Creativity Beyond Thoughts."
 );
 
 const Contact = () => {
@@ -310,7 +310,7 @@ const Contact = () => {
                         >
                           Privacy Policy
                         </Link>
-                        . I consent to Creativity Beyond Thought collecting and using my information to respond to this enquiry.
+                        . I consent to Creativity Beyond Thoughts collecting and using my information to respond to this enquiry.
                         <span className="text-accent ml-1">*</span>
                       </span>
                     </label>
