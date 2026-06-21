@@ -1,13 +1,6 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "https://www.creativitybeyondthoughts.com/(.*)",
-      "destination": "https://creativitybeyondthoughts.com/$1",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     {
       "source": "/((?!api|assets|_next|favicon|robots|sitemap|.*\\..*).*)",
