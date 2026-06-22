@@ -10,9 +10,11 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { siteData } from "@/data/content";
-import PageSEO from "@/components/PageSEO";
+import useSEOHelmet from "@/hooks/useSEOHelmet";
 import OfficePulse from "@/components/OfficePulse";
 import { Link } from "react-router-dom";
+import { seoConfig } from "@/config/seo.config";
+import PageSEO from "@/components/PageSEO";
 import { pageSEOConfig } from "@/lib/seo";
 
 const WHATSAPP_NUMBER = "918800180670"; // country code + number, no +
@@ -21,6 +23,12 @@ const WHATSAPP_MESSAGE = encodeURIComponent(
 );
 
 const Contact = () => {
+  const metadata = seoConfig.contact;
+  useSEOHelmet({
+    ...metadata,
+    breadcrumbs: [{ name: "Contact", url: metadata.url }],
+  });
+
   const [form, setForm] = useState({
     name: "",
     email: "",

@@ -3,22 +3,82 @@ import MarqueeSection from "@/components/MarqueeSection";
 import ColorPsychologySection from "@/components/ColorPsychologySection";
 import BentoGallery from "@/components/BentoGallery";
 import WeddingSection from "@/components/WeddingSection";
-import PageSEO from "@/components/PageSEO";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { siteData } from "@/data/content";
-import { pageSEOConfig } from "@/lib/seo";
+import {
+  seoConfig,
+  getOrganizationSchema,
+  getWebsiteSchema,
+} from "@/config/seo.config";
 
 const Index = () => {
+  const metadata = seoConfig.home;
+  const organizationSchema = getOrganizationSchema();
+  const websiteSchema = getWebsiteSchema();
+
   return (
     <>
-      <PageSEO
-        title={pageSEOConfig.home.title}
-        description={pageSEOConfig.home.description}
-        keywords={pageSEOConfig.home.keywords}
-        canonical={pageSEOConfig.home.canonical}
-        ogType={pageSEOConfig.home.ogType}
-      />
+      <Helmet>
+        {/* Standard Meta Tags */}
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta name="keywords" content={metadata.keywords} />
+        <meta name="robots" content={metadata.robots} />
+        <meta name="author" content="Creativity Beyond Thoughts" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="7 days" />
+
+        {/* Canonical URL - CRITICAL FOR FIXING BREADCRUMB BUG */}
+        <link rel="canonical" href={metadata.canonical} />
+
+        {/* Open Graph Tags for Social Media */}
+        <meta property="og:type" content={metadata.ogType} />
+        <meta property="og:title" content={metadata.ogTitle} />
+        <meta property="og:description" content={metadata.ogDescription} />
+        <meta property="og:url" content={metadata.url} />
+        <meta property="og:image" content={metadata.ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:site_name" content="Creativity Beyond Thoughts" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content={metadata.twitterCard} />
+        <meta name="twitter:title" content={metadata.ogTitle} />
+        <meta name="twitter:description" content={metadata.ogDescription} />
+        <meta name="twitter:image" content={metadata.ogImage} />
+        <meta name="twitter:image:alt" content={metadata.ogTitle} />
+        <meta name="twitter:site" content="@CBTcreatives" />
+        <meta name="twitter:creator" content="@CBTcreatives" />
+
+        {/* Geo-targeting Meta Tags */}
+        <meta name="geo.region" content="IN-DL" />
+        <meta name="geo.placename" content="New Delhi, India" />
+        <meta name="geo.position" content="28.6381;77.1769" />
+        <meta name="ICBM" content="28.6381, 77.1769" />
+
+        {/* Additional Meta Tags */}
+        <meta name="theme-color" content="#0a0a0a" />
+        <meta name="format-detection" content="telephone=no,email=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+
+        {/* JSON-LD Structured Data Scripts */}
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </script>
+      </Helmet>
+
       <HeroSection />
 
       {/* Infinite Marquee section providing dynamic movement early on */}

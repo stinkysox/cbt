@@ -1,8 +1,16 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import useSEOHelmet from "@/hooks/useSEOHelmet";
+import { seoConfig } from "@/config/seo.config";
 import { siteData } from "@/data/content";
 
 const Privacy = () => {
+  const metadata = seoConfig.privacy;
+  useSEOHelmet({
+    ...metadata,
+    breadcrumbs: [{ name: "Privacy Policy", url: metadata.url }],
+  });
+
   return (
     <>
       <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden">
@@ -14,7 +22,10 @@ const Privacy = () => {
             transition={{ duration: 0.8 }}
             className="text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-tight mb-4 overflow-visible"
           >
-            {siteData.privacyPage.heroTitleLine1}<span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">{siteData.privacyPage.heroHighlight}</span>
+            {siteData.privacyPage.heroTitleLine1}
+            <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">
+              {siteData.privacyPage.heroHighlight}
+            </span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -36,8 +47,12 @@ const Privacy = () => {
         >
           {siteData.privacyPage.sections.map((section, i) => (
             <div key={i} className="glass-card p-6 md:p-8">
-              <h2 className="font-display text-xl font-bold mb-3">{section.title}</h2>
-              <p className="text-sm text-muted-foreground font-body leading-relaxed">{section.content}</p>
+              <h2 className="font-display text-xl font-bold mb-3">
+                {section.title}
+              </h2>
+              <p className="text-sm text-muted-foreground font-body leading-relaxed">
+                {section.content}
+              </p>
             </div>
           ))}
 

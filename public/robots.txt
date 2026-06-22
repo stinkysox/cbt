@@ -1,25 +1,47 @@
-# ─── Allow all crawlers ────────────────────────────────────────
+# =============================================================================
+# SEO ROBOTS CONFIGURATION
+# Creativity Beyond Thoughts - Premium Creative Agency
+# https://creativitybeyondthoughts.com
+# =============================================================================
+
+# Allow all crawlers by default
 User-agent: *
 Allow: /
 
-# ─── Disallow admin/build artifacts ───────────────────────────
+# Disallow unnecessary assets and files
 Disallow: /assets/
 Disallow: /*.json$
 Disallow: /*.js.map$
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /node_modules/
 
-# ─── Specific crawlers ────────────────────────────────────────
+# =============================================================================
+# CRAWLER-SPECIFIC RULES
+# =============================================================================
+
+# Google Bot - Standard crawling
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 5
+Crawl-delay: 0
+Request-rate: 32/1s
 
+# Google Bot - Mobile crawler
+User-agent: Googlebot-Mobile
+Allow: /
+Crawl-delay: 0
+
+# Bing Bot
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 10
+Crawl-delay: 1
+Request-rate: 1/1s
 
-User-agent: Twitterbot
+# Social Media Crawlers (Always Allow for Rich Previews)
+User-agent: facebookexternalhit
 Allow: /
 
-User-agent: facebookexternalhit
+User-agent: Twitterbot
 Allow: /
 
 User-agent: LinkedInBot
@@ -28,7 +50,16 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
-# ─── Block bad bots ───────────────────────────────────────────
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# =============================================================================
+# BLOCK AGGRESSIVE/UNWANTED BOTS
+# =============================================================================
+
 User-agent: AhrefsBot
 Disallow: /
 
@@ -41,6 +72,32 @@ Disallow: /
 User-agent: MJ12bot
 Disallow: /
 
-# ─── Sitemap ──────────────────────────────────────────────────
+User-agent: YandexBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# =============================================================================
+# SITEMAP & HOST CONFIGURATION
+# =============================================================================
+
+# Primary Sitemap
 Sitemap: https://creativitybeyondthoughts.com/sitemap.xml
+
+# Preferred domain (non-www)
 Host: https://creativitybeyondthoughts.com
+
+# =============================================================================
+# ADDITIONAL DIRECTIVES
+# =============================================================================
+
+# Cache control
+# Note: If using caching headers, they take precedence over this
+# Max-Snippet: -1
+# Max-Image-Preview: large
+# Max-Video-Preview: -1
+

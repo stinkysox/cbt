@@ -1,18 +1,18 @@
 import { motion } from "framer-motion";
 import { siteData } from "@/data/content";
-import PageSEO from "@/components/PageSEO";
+import useSEOHelmet from "@/hooks/useSEOHelmet";
 import BrandSlideshow from "@/components/BrandSlideshow";
-import { pageSEOConfig } from "@/lib/seo";
+import { seoConfig } from "@/config/seo.config";
 
 const Work = () => {
+  const metadata = seoConfig.work;
+  useSEOHelmet({
+    ...metadata,
+    breadcrumbs: [{ name: "Work", url: metadata.url }],
+  });
+
   return (
     <div className="min-h-screen bg-background">
-      <PageSEO
-        title={pageSEOConfig.work.title}
-        description={pageSEOConfig.work.description}
-        keywords={pageSEOConfig.work.keywords}
-        canonical={pageSEOConfig.work.canonical}
-      />
       <main className="pt-24">
         {/* Hero Section */}
         <section className="py-24 px-6">

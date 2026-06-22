@@ -1,18 +1,18 @@
 import { motion } from "framer-motion";
 import { siteData } from "@/data/content";
-import PageSEO from "@/components/PageSEO";
+import useSEOHelmet from "@/hooks/useSEOHelmet";
 import CreativeMenu from "@/components/CreativeMenu";
-import { pageSEOConfig } from "@/lib/seo";
+import { seoConfig } from "@/config/seo.config";
 
 const Services = () => {
+  const metadata = seoConfig.services;
+  useSEOHelmet({
+    ...metadata,
+    breadcrumbs: [{ name: "Services", url: metadata.url }],
+  });
+
   return (
     <div className="min-h-screen bg-background">
-      <PageSEO
-        title={pageSEOConfig.services.title}
-        description={pageSEOConfig.services.description}
-        keywords={pageSEOConfig.services.keywords}
-        canonical={pageSEOConfig.services.canonical}
-      />
       <main className="pt-24">
         {/* Hero Section */}
         <section className="py-24 px-6 overflow-hidden">
