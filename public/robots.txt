@@ -8,8 +8,7 @@
 User-agent: *
 Allow: /
 
-# Disallow unnecessary assets and files
-Disallow: /assets/
+# Disallow unnecessary files (not crawlable assets)
 Disallow: /*.json$
 Disallow: /*.js.map$
 Disallow: /.git/

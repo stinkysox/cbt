@@ -49,9 +49,9 @@ export const generateSEOMeta = (meta: SEOMetadata) => {
 export const pageSEOConfig = {
   home: {
     title:
-      "Creativity Beyond Thoughts | Creative Agency for Branding & Digital Experiences",
+      "Creativity Beyond Thoughts | Premium Creative Agency",
     description:
-      "Award-winning digital creative agency specializing in branding, visual identity, web design, app development, and interactive digital experiences in Delhi.",
+      "A digital creative agency crafting elite visual identities, next-gen web design, and high-end interactive experiences that elevate brands.",
     keywords: [
       "creative agency",
       "branding agency",

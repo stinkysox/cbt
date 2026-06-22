@@ -14,8 +14,6 @@ import useSEOHelmet from "@/hooks/useSEOHelmet";
 import OfficePulse from "@/components/OfficePulse";
 import { Link } from "react-router-dom";
 import { seoConfig } from "@/config/seo.config";
-import PageSEO from "@/components/PageSEO";
-import { pageSEOConfig } from "@/lib/seo";
 
 const WHATSAPP_NUMBER = "918800180670"; // country code + number, no +
 const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -60,12 +58,6 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <PageSEO
-        title={pageSEOConfig.contact.title}
-        description={pageSEOConfig.contact.description}
-        keywords={pageSEOConfig.contact.keywords}
-        canonical={pageSEOConfig.contact.canonical}
-      />
       <main className="pt-20 md:pt-24">
         {/* ── Hero ───────────────────────────────────────────────── */}
         <section className="py-16 md:py-24 px-4 sm:px-6">
