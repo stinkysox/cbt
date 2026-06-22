@@ -7,46 +7,40 @@ const DURATION = 5000;
 import LazyImage from "./LazyImage";
 
 // ── Slideshow image with shimmer (used inside dark overlay panels) ──
-const SlideshowImage = memo(({
-  src,
-  motionKey,
-}: {
-  src: string;
-  motionKey: string;
-}) => {
-  const [loaded, setLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
+const SlideshowImage = memo(
+  ({ src, motionKey }: { src: string; motionKey: string }) => {
+    const [loaded, setLoaded] = useState(false);
+    const imgRef = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
-    setLoaded(false);
-    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
-      setLoaded(true);
-    }
-  }, [src]);
+    useEffect(() => {
+      setLoaded(false);
+      if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
+        setLoaded(true);
+      }
+    }, [src]);
 
-  return (
-    <>
-      {!loaded && (
-        <div className="lazy-shimmer--pulse z-0" />
-      )}
-      <AnimatePresence mode="wait">
-        <motion.img
-          ref={imgRef}
-          key={motionKey}
-          src={src}
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: loaded ? 1 : 0, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
-          onLoad={() => setLoaded(true)}
-        />
-      </AnimatePresence>
-    </>
-  );
-});
+    return (
+      <>
+        {!loaded && <div className="lazy-shimmer--pulse z-0" />}
+        <AnimatePresence mode="wait">
+          <motion.img
+            ref={imgRef}
+            key={motionKey}
+            src={src}
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: loaded ? 1 : 0, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            onLoad={() => setLoaded(true)}
+          />
+        </AnimatePresence>
+      </>
+    );
+  },
+);
 SlideshowImage.displayName = "SlideshowImage";
 
 // ── Preload next image ──
@@ -82,7 +76,7 @@ const useSlideshow = (images: string[], active: boolean) => {
 
       rafRef.current = requestAnimationFrame(tick);
     },
-    [images]
+    [images],
   );
 
   useEffect(() => {
@@ -108,225 +102,249 @@ const useSlideshow = (images: string[], active: boolean) => {
 };
 
 // ── Featured slideshow panel ──
-const FeaturedSlideshow = memo(({
-  brand,
-}: {
-  brand: { name: string; images: string[] };
-}) => {
-  const { currentIndex, progress, goTo } = useSlideshow(brand.images, true);
+const FeaturedSlideshow = memo(
+  ({ brand }: { brand: { name: string; images: string[] } }) => {
+    const { currentIndex, progress, goTo } = useSlideshow(brand.images, true);
 
-  // Preload all images for the active brand on mount
-  useEffect(() => {
-    brand.images.forEach(preloadImage);
-  }, [brand.images]);
+    // Preload all images for the active brand on mount
+    useEffect(() => {
+      brand.images.forEach(preloadImage);
+    }, [brand.images]);
 
-  return (
-    <div className="relative w-full h-full overflow-hidden rounded-2xl bg-[#0e0e0e]">
-      <SlideshowImage
-        src={brand.images[currentIndex]}
-        motionKey={`${brand.name}-${currentIndex}`}
-      />
+    return (
+      <div className="relative w-full h-full overflow-hidden rounded-2xl bg-[#0e0e0e]">
+        <SlideshowImage
+          src={brand.images[currentIndex]}
+          motionKey={`${brand.name}-${currentIndex}`}
+        />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 pointer-events-none" />
 
-      <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10">
-        <span className="block mb-2 text-xs font-mono tracking-[0.3em] uppercase text-white/80">
-          Digital Transformation & Strategy
-        </span>
-
-        <AnimatePresence mode="wait">
-          <motion.h3
-            key={brand.name}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="font-black leading-none mb-6 text-white"
-            style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              fontSize: "clamp(40px, 5vw, 72px)",
-              letterSpacing: "-0.03em",
-            }}
-          >
-            {brand.name}
-          </motion.h3>
-        </AnimatePresence>
-
-        <div className="flex items-center gap-2">
-          {brand.images.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => goTo(idx)}
-              className="relative h-[2px] rounded-full overflow-hidden focus:outline-none transition-all duration-300"
-              style={{
-                width: idx === currentIndex ? 48 : 20,
-                background: "rgba(255,255,255,0.25)",
-              }}
-            >
-              {idx === currentIndex && (
-                <div
-                  className="absolute inset-y-0 left-0 bg-white rounded-full"
-                  style={{ width: `${progress}%` }}
-                />
-              )}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-});
-FeaturedSlideshow.displayName = "FeaturedSlideshow";
-
-// ── Brand list item ──
-const BrandListItem = memo(({
-  brand,
-  index,
-  isActive,
-  onClick,
-}: {
-  brand: { name: string; images: string[] };
-  index: number;
-  isActive: boolean;
-  onClick: () => void;
-}) => (
-  <button
-    onClick={onClick}
-    className={`group w-full text-left flex items-center gap-4 py-6 border-b transition-colors duration-200 focus:outline-none ${
-      isActive ? "border-foreground/20" : "border-foreground/5 hover:border-foreground/10"
-    }`}
-  >
-    <div className="relative w-[2px] h-8 rounded-full overflow-hidden shrink-0 bg-foreground/10">
-      <motion.div
-        className="absolute inset-0 bg-foreground"
-        initial={false}
-        animate={{ scaleY: isActive ? 1 : 0, originY: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      />
-    </div>
-
-    <span
-      className={`font-mono text-xs tracking-widest tabular-nums transition-colors duration-200 ${
-        isActive ? "text-foreground" : "text-foreground/30"
-      }`}
-    >
-      {String(index + 1).padStart(2, "0")}
-    </span>
-
-    <span
-      className={`font-black leading-none transition-colors duration-200 ${
-        isActive ? "text-foreground" : "text-foreground/30"
-      }`}
-      style={{
-        fontFamily: "Georgia, 'Times New Roman', serif",
-        fontSize: "clamp(20px, 2.2vw, 30px)",
-        letterSpacing: "-0.02em",
-      }}
-    >
-      {brand.name}
-    </span>
-
-    <div className="ml-auto shrink-0 w-12 h-12 rounded-lg overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-      <LazyImage src={brand.images[0]} alt="" className="w-full h-full object-cover" />
-    </div>
-  </button>
-));
-BrandListItem.displayName = "BrandListItem";
-
-// ── Mobile card ──
-const MobileCard = memo(({
-  brand,
-  index,
-  isActive,
-  onClick,
-}: {
-  brand: { name: string; images: string[] };
-  index: number;
-  isActive: boolean;
-  onClick: () => void;
-}) => {
-  const { currentIndex, progress, goTo } = useSlideshow(brand.images, isActive);
-
-  useEffect(() => {
-    if (isActive) brand.images.forEach(preloadImage);
-  }, [isActive, brand.images]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.06 }}
-      className={`relative overflow-hidden rounded-2xl border cursor-pointer transition-colors duration-300 ${
-        isActive ? "border-transparent bg-[#0e0e0e]" : "border-foreground/10 bg-transparent"
-      }`}
-      style={{ height: isActive ? "clamp(300px, 65vw, 450px)" : 85 }}
-      onClick={onClick}
-    >
-      {!isActive && (
-        <div className="absolute inset-0 flex items-center px-6 gap-4 z-10">
-          <span className="font-mono text-xs text-foreground/30 tabular-nums">
-            {String(index + 1).padStart(2, "0")}
+        <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-10">
+          <span className="block mb-2 text-xs font-mono tracking-[0.3em] uppercase text-white/80">
+            Digital Transformation & Strategy
           </span>
-          <span
-            className="font-black text-foreground/60 leading-none"
-            style={{ fontFamily: "Georgia, serif", fontSize: 22 }}
-          >
-            {brand.name}
-          </span>
-          <div className="ml-auto w-10 h-10 rounded-lg overflow-hidden opacity-40 grayscale">
-            <LazyImage src={brand.images[0]} alt="" className="w-full h-full object-cover" />
-          </div>
-        </div>
-      )}
 
-      {isActive && (
-        <>
-          <SlideshowImage
-            src={brand.images[currentIndex]}
-            motionKey={String(currentIndex)}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">
-            <span className="font-mono text-xs tracking-[0.3em] uppercase mb-2 text-white/70">
-              Digital Transformation & Strategy
-            </span>
-            <h3
-              className="font-black text-white leading-none mb-4"
+          <AnimatePresence mode="wait">
+            <motion.h3
+              key={brand.name}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="font-black leading-none mb-6 text-white"
               style={{
-                fontFamily: "Georgia, serif",
-                fontSize: "clamp(32px, 8vw, 48px)",
+                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontSize: "clamp(40px, 5vw, 72px)",
                 letterSpacing: "-0.03em",
               }}
             >
               {brand.name}
-            </h3>
-            <div className="flex items-center gap-2">
-              {brand.images.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={(e) => { e.stopPropagation(); goTo(idx); }}
-                  className="relative h-[2px] rounded-full overflow-hidden focus:outline-none"
-                  style={{
-                    width: idx === currentIndex ? 40 : 16,
-                    background: "rgba(255,255,255,0.3)",
-                  }}
-                >
-                  {idx === currentIndex && (
-                    <div
-                      className="absolute inset-y-0 left-0 bg-white rounded-full"
-                      style={{ width: `${progress}%` }}
-                    />
-                  )}
-                </button>
-              ))}
+            </motion.h3>
+          </AnimatePresence>
+
+          <div className="flex items-center gap-2">
+            {brand.images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => goTo(idx)}
+                className="relative h-[2px] rounded-full overflow-hidden focus:outline-none transition-all duration-300"
+                style={{
+                  width: idx === currentIndex ? 48 : 20,
+                  background: "rgba(255,255,255,0.25)",
+                }}
+              >
+                {idx === currentIndex && (
+                  <div
+                    className="absolute inset-y-0 left-0 bg-white rounded-full"
+                    style={{ width: `${progress}%` }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  },
+);
+FeaturedSlideshow.displayName = "FeaturedSlideshow";
+
+// ── Brand list item ──
+const BrandListItem = memo(
+  ({
+    brand,
+    index,
+    isActive,
+    onClick,
+  }: {
+    brand: { name: string; images: string[] };
+    index: number;
+    isActive: boolean;
+    onClick: () => void;
+  }) => (
+    <button
+      onClick={onClick}
+      className={`group w-full text-left flex items-center gap-4 py-6 border-b transition-colors duration-200 focus:outline-none ${
+        isActive
+          ? "border-foreground/20"
+          : "border-foreground/5 hover:border-foreground/10"
+      }`}
+    >
+      <div className="relative w-[2px] h-8 rounded-full overflow-hidden shrink-0 bg-foreground/10">
+        <motion.div
+          className="absolute inset-0 bg-foreground"
+          initial={false}
+          animate={{ scaleY: isActive ? 1 : 0, originY: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        />
+      </div>
+
+      <span
+        className={`font-mono text-xs tracking-widest tabular-nums transition-colors duration-200 ${
+          isActive ? "text-foreground" : "text-foreground/30"
+        }`}
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      <span
+        className={`font-black leading-none transition-colors duration-200 ${
+          isActive ? "text-foreground" : "text-foreground/30"
+        }`}
+        style={{
+          fontFamily: "Georgia, 'Times New Roman', serif",
+          fontSize: "clamp(20px, 2.2vw, 30px)",
+          letterSpacing: "-0.02em",
+        }}
+      >
+        {brand.name}
+      </span>
+
+      <div className="ml-auto shrink-0 w-12 h-12 rounded-lg overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+        <LazyImage
+          src={brand.images[0]}
+          alt={`${brand.name} brand preview thumbnail`}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </button>
+  ),
+);
+BrandListItem.displayName = "BrandListItem";
+
+// ── Mobile card ──
+const MobileCard = memo(
+  ({
+    brand,
+    index,
+    isActive,
+    onClick,
+  }: {
+    brand: { name: string; images: string[] };
+    index: number;
+    isActive: boolean;
+    onClick: () => void;
+  }) => {
+    const { currentIndex, progress, goTo } = useSlideshow(
+      brand.images,
+      isActive,
+    );
+
+    useEffect(() => {
+      if (isActive) brand.images.forEach(preloadImage);
+    }, [isActive, brand.images]);
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{
+          duration: 0.5,
+          ease: [0.22, 1, 0.36, 1],
+          delay: index * 0.06,
+        }}
+        className={`relative overflow-hidden rounded-2xl border cursor-pointer transition-colors duration-300 ${
+          isActive
+            ? "border-transparent bg-[#0e0e0e]"
+            : "border-foreground/10 bg-transparent"
+        }`}
+        style={{ height: isActive ? "clamp(300px, 65vw, 450px)" : 85 }}
+        onClick={onClick}
+      >
+        {!isActive && (
+          <div className="absolute inset-0 flex items-center px-6 gap-4 z-10">
+            <span className="font-mono text-xs text-foreground/30 tabular-nums">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <span
+              className="font-black text-foreground/60 leading-none"
+              style={{ fontFamily: "Georgia, serif", fontSize: 22 }}
+            >
+              {brand.name}
+            </span>
+            <div className="ml-auto w-10 h-10 rounded-lg overflow-hidden opacity-40 grayscale">
+              <LazyImage
+                src={brand.images[0]}
+                alt={`${brand.name} brand portfolio image`}
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
-        </>
-      )}
-    </motion.div>
-  );
-});
+        )}
+
+        {isActive && (
+          <>
+            <SlideshowImage
+              src={brand.images[currentIndex]}
+              motionKey={String(currentIndex)}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">
+              <span className="font-mono text-xs tracking-[0.3em] uppercase mb-2 text-white/70">
+                Digital Transformation & Strategy
+              </span>
+              <h3
+                className="font-black text-white leading-none mb-4"
+                style={{
+                  fontFamily: "Georgia, serif",
+                  fontSize: "clamp(32px, 8vw, 48px)",
+                  letterSpacing: "-0.03em",
+                }}
+              >
+                {brand.name}
+              </h3>
+              <div className="flex items-center gap-2">
+                {brand.images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      goTo(idx);
+                    }}
+                    className="relative h-[2px] rounded-full overflow-hidden focus:outline-none"
+                    style={{
+                      width: idx === currentIndex ? 40 : 16,
+                      background: "rgba(255,255,255,0.3)",
+                    }}
+                  >
+                    {idx === currentIndex && (
+                      <div
+                        className="absolute inset-y-0 left-0 bg-white rounded-full"
+                        style={{ width: `${progress}%` }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+      </motion.div>
+    );
+  },
+);
 MobileCard.displayName = "MobileCard";
 
 // ── Main section ──
@@ -339,11 +357,14 @@ const BrandSlideshow = () => {
     brands[0]?.images.forEach(preloadImage);
   }, [brands]);
 
-  const handleBrandChange = useCallback((index: number) => {
-    setActiveBrand(index);
-    // Preload the following brand speculatively
-    brands[index + 1]?.images.forEach(preloadImage);
-  }, [brands]);
+  const handleBrandChange = useCallback(
+    (index: number) => {
+      setActiveBrand(index);
+      // Preload the following brand speculatively
+      brands[index + 1]?.images.forEach(preloadImage);
+    },
+    [brands],
+  );
 
   return (
     <section className="relative overflow-hidden bg-background py-24 md:py-32">
@@ -375,7 +396,10 @@ const BrandSlideshow = () => {
         </motion.div>
 
         {/* Desktop */}
-        <div className="hidden md:grid gap-12 items-start" style={{ gridTemplateColumns: "1fr 1.6fr" }}>
+        <div
+          className="hidden md:grid gap-12 items-start"
+          style={{ gridTemplateColumns: "1fr 1.6fr" }}
+        >
           <nav className="flex flex-col">
             {brands.map((brand, index) => (
               <BrandListItem

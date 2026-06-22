@@ -3,20 +3,29 @@ import MarqueeSection from "@/components/MarqueeSection";
 import ColorPsychologySection from "@/components/ColorPsychologySection";
 import BentoGallery from "@/components/BentoGallery";
 import WeddingSection from "@/components/WeddingSection";
+import PageSEO from "@/components/PageSEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { siteData } from "@/data/content";
+import { pageSEOConfig } from "@/lib/seo";
 
 const Index = () => {
   return (
     <>
+      <PageSEO
+        title={pageSEOConfig.home.title}
+        description={pageSEOConfig.home.description}
+        keywords={pageSEOConfig.home.keywords}
+        canonical={pageSEOConfig.home.canonical}
+        ogType={pageSEOConfig.home.ogType}
+      />
       <HeroSection />
-      
+
       {/* Infinite Marquee section providing dynamic movement early on */}
       <MarqueeSection />
-      
+
       <ColorPsychologySection />
-      
+
       {/* Dynamic interactive bento grid gallery displaying work/highlights */}
       <BentoGallery />
 
@@ -24,7 +33,10 @@ const Index = () => {
       <WeddingSection />
 
       {/* CTA Section */}
-      <section className="section-padding text-center">
+      <section
+        className="section-padding text-center"
+        aria-labelledby="cta-heading"
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,9 +47,16 @@ const Index = () => {
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 font-body">
             {siteData.bottomCta.subtitle}
           </p>
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 overflow-visible">
-            {siteData.bottomCta.titleLine1}<br />
-            <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">{siteData.bottomCta.titleHighlight}</span>{siteData.bottomCta.titlePunctuation}
+          <h2
+            id="cta-heading"
+            className="text-4xl md:text-6xl font-display font-bold mb-6 overflow-visible"
+          >
+            {siteData.bottomCta.titleLine1}
+            <br />
+            <span className="italic text-gradient inline-block pr-[0.1em] pb-[0.1em] -mb-[0.1em] overflow-visible">
+              {siteData.bottomCta.titleHighlight}
+            </span>
+            {siteData.bottomCta.titlePunctuation}
           </h2>
           <p className="text-muted-foreground font-body text-lg mb-10">
             {siteData.bottomCta.description}
@@ -48,7 +67,9 @@ const Index = () => {
               className="magnetic-btn inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-foreground text-primary-foreground text-base font-medium hover:scale-105 transition-all duration-300 group"
             >
               {siteData.bottomCta.primaryBtn.text}
-              <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+              <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
             <Link
               to={siteData.bottomCta.secondaryBtn.to}

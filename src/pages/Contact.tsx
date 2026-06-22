@@ -1,17 +1,32 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, MessageCircle, ExternalLink, CheckCircle2 } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  MessageCircle,
+  ExternalLink,
+  CheckCircle2,
+} from "lucide-react";
 import { siteData } from "@/data/content";
+import PageSEO from "@/components/PageSEO";
 import OfficePulse from "@/components/OfficePulse";
 import { Link } from "react-router-dom";
+import { pageSEOConfig } from "@/lib/seo";
 
 const WHATSAPP_NUMBER = "918800180670"; // country code + number, no +
 const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hi! I visited your website and I'd like to discuss a project with Creativity Beyond Thoughts."
+  "Hi! I visited your website and I'd like to discuss a project with Creativity Beyond Thoughts.",
 );
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    service: "",
+    message: "",
+  });
   const [agreed, setAgreed] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -37,12 +52,16 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <PageSEO
+        title={pageSEOConfig.contact.title}
+        description={pageSEOConfig.contact.description}
+        keywords={pageSEOConfig.contact.keywords}
+        canonical={pageSEOConfig.contact.canonical}
+      />
       <main className="pt-20 md:pt-24">
-
         {/* ── Hero ───────────────────────────────────────────────── */}
         <section className="py-16 md:py-24 px-4 sm:px-6">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
             <div>
               <motion.span
                 initial={{ opacity: 0, y: 10 }}
@@ -76,14 +95,15 @@ const Contact = () => {
 
               {/* Contact Items */}
               <div className="space-y-6 md:space-y-8">
-
                 {/* Email */}
                 <div className="flex items-start gap-4 md:gap-6 group">
                   <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-foreground/[0.03] border border-border/50 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
                     <Mail size={18} />
                   </div>
                   <div>
-                    <p className="text-xs font-display font-medium text-muted-foreground uppercase tracking-widest mb-1">Email us</p>
+                    <p className="text-xs font-display font-medium text-muted-foreground uppercase tracking-widest mb-1">
+                      Email us
+                    </p>
                     <a
                       href={`mailto:${siteData.contact.email}`}
                       className="text-base md:text-lg font-display font-bold hover:text-accent transition-colors break-all"
@@ -99,7 +119,9 @@ const Contact = () => {
                     <Phone size={18} />
                   </div>
                   <div>
-                    <p className="text-xs font-display font-medium text-muted-foreground uppercase tracking-widest mb-1">Call us</p>
+                    <p className="text-xs font-display font-medium text-muted-foreground uppercase tracking-widest mb-1">
+                      Call us
+                    </p>
                     <a
                       href={`tel:${siteData.contact.phone}`}
                       className="text-base md:text-lg font-display font-bold hover:text-accent transition-colors"
@@ -115,7 +137,9 @@ const Contact = () => {
                     <MapPin size={18} />
                   </div>
                   <div>
-                    <p className="text-xs font-display font-medium text-muted-foreground uppercase tracking-widest mb-1">Visit us</p>
+                    <p className="text-xs font-display font-medium text-muted-foreground uppercase tracking-widest mb-1">
+                      Visit us
+                    </p>
                     <p className="text-base md:text-lg font-display font-bold leading-tight max-w-xs">
                       {siteData.contact.address}
                     </p>
@@ -133,9 +157,11 @@ const Contact = () => {
                 >
                   <MessageCircle size={20} className="shrink-0" />
                   <span>Chat on WhatsApp</span>
-                  <ExternalLink size={14} className="ml-auto opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <ExternalLink
+                    size={14}
+                    className="ml-auto opacity-60 group-hover:opacity-100 transition-opacity"
+                  />
                 </motion.a>
-
               </div>
             </div>
 
@@ -143,7 +169,6 @@ const Contact = () => {
             <div className="relative mt-12 lg:mt-0">
               <OfficePulse />
             </div>
-
           </div>
         </section>
 
@@ -151,7 +176,6 @@ const Contact = () => {
         <section className="py-16 md:py-24 px-4 sm:px-6 bg-foreground/[0.02]">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-10 md:gap-16">
-
               {/* Left copy */}
               <div className="space-y-6">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold overflow-visible text-left">
@@ -161,12 +185,15 @@ const Contact = () => {
                   </span>
                 </h2>
                 <p className="text-sm sm:text-base text-muted-foreground font-body">
-                  Complete the form and we'll get back to you within 24 hours to discuss how we can bring your vision to life.
+                  Complete the form and we'll get back to you within 24 hours to
+                  discuss how we can bring your vision to life.
                 </p>
 
                 {/* WhatsApp quick link (repeated smaller in form col) */}
                 <div className="hidden md:block pt-4 border-t border-border/30">
-                  <p className="text-xs text-muted-foreground font-body mb-3 uppercase tracking-widest">Prefer instant chat?</p>
+                  <p className="text-xs text-muted-foreground font-body mb-3 uppercase tracking-widest">
+                    Prefer instant chat?
+                  </p>
                   <a
                     href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
                     target="_blank"
@@ -187,9 +214,12 @@ const Contact = () => {
                   className="flex flex-col items-center justify-center gap-4 text-center py-16 rounded-3xl bg-background border border-border/40"
                 >
                   <CheckCircle2 size={48} className="text-[#25D366]" />
-                  <h3 className="text-2xl font-display font-bold">Message Sent!</h3>
+                  <h3 className="text-2xl font-display font-bold">
+                    Message Sent!
+                  </h3>
                   <p className="text-muted-foreground font-body text-sm max-w-xs">
-                    Thanks for reaching out. We'll get back to you within 24 hours.
+                    Thanks for reaching out. We'll get back to you within 24
+                    hours.
                   </p>
                   <a
                     href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
@@ -202,8 +232,11 @@ const Contact = () => {
                   </a>
                 </motion.div>
               ) : (
-                <form className="space-y-5 md:space-y-6" onSubmit={handleSubmit} noValidate>
-
+                <form
+                  className="space-y-5 md:space-y-6"
+                  onSubmit={handleSubmit}
+                  noValidate
+                >
                   {/* Name */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-display font-medium uppercase tracking-widest text-muted-foreground">
@@ -212,11 +245,17 @@ const Contact = () => {
                     <input
                       type="text"
                       value={form.name}
-                      onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                      onChange={(e) =>
+                        setForm((f) => ({ ...f, name: e.target.value }))
+                      }
                       className={`w-full bg-background border rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 outline-none focus:border-accent transition-colors font-body text-sm md:text-base ${errors.name ? "border-red-500" : "border-border/50"}`}
                       placeholder="John Doe"
                     />
-                    {errors.name && <p className="text-xs text-red-500 font-body">{errors.name}</p>}
+                    {errors.name && (
+                      <p className="text-xs text-red-500 font-body">
+                        {errors.name}
+                      </p>
+                    )}
                   </div>
 
                   {/* Email */}
@@ -227,11 +266,17 @@ const Contact = () => {
                     <input
                       type="email"
                       value={form.email}
-                      onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                      onChange={(e) =>
+                        setForm((f) => ({ ...f, email: e.target.value }))
+                      }
                       className={`w-full bg-background border rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 outline-none focus:border-accent transition-colors font-body text-sm md:text-base ${errors.email ? "border-red-500" : "border-border/50"}`}
                       placeholder="john@example.com"
                     />
-                    {errors.email && <p className="text-xs text-red-500 font-body">{errors.email}</p>}
+                    {errors.email && (
+                      <p className="text-xs text-red-500 font-body">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
 
                   {/* Service */}
@@ -241,17 +286,27 @@ const Contact = () => {
                     </label>
                     <select
                       value={form.service}
-                      onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
+                      onChange={(e) =>
+                        setForm((f) => ({ ...f, service: e.target.value }))
+                      }
                       className="w-full bg-background border border-border/50 rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 outline-none focus:border-accent transition-colors font-body text-sm md:text-base text-foreground"
                     >
                       <option value="">Select a service…</option>
                       <option value="brand-strategy">Brand Strategy</option>
-                      <option value="visual-identity">Visual Identity / Logo Design</option>
-                      <option value="web-development">Web Design & Development</option>
+                      <option value="visual-identity">
+                        Visual Identity / Logo Design
+                      </option>
+                      <option value="web-development">
+                        Web Design & Development
+                      </option>
                       <option value="app-development">App Development</option>
-                      <option value="video-editing">Video Editing & Motion Graphics</option>
+                      <option value="video-editing">
+                        Video Editing & Motion Graphics
+                      </option>
                       <option value="social-media">Social Media Content</option>
-                      <option value="wedding">Wedding / Event Photography & Video</option>
+                      <option value="wedding">
+                        Wedding / Event Photography & Video
+                      </option>
                       <option value="other">Other / Not Sure Yet</option>
                     </select>
                   </div>
@@ -264,31 +319,54 @@ const Contact = () => {
                     <textarea
                       rows={4}
                       value={form.message}
-                      onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                      onChange={(e) =>
+                        setForm((f) => ({ ...f, message: e.target.value }))
+                      }
                       className={`w-full bg-background border rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 outline-none focus:border-accent transition-colors font-body resize-none text-sm md:text-base ${errors.message ? "border-red-500" : "border-border/50"}`}
                       placeholder="Tell us about your project, goals, and timeline…"
                     />
-                    {errors.message && <p className="text-xs text-red-500 font-body">{errors.message}</p>}
+                    {errors.message && (
+                      <p className="text-xs text-red-500 font-body">
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
 
                   {/* ── T&C Checkbox ─────────────────────────────── */}
-                  <div className={`rounded-xl border p-4 transition-colors ${errors.agreed ? "border-red-500 bg-red-500/5" : "border-border/40 bg-foreground/[0.02]"}`}>
+                  <div
+                    className={`rounded-xl border p-4 transition-colors ${errors.agreed ? "border-red-500 bg-red-500/5" : "border-border/40 bg-foreground/[0.02]"}`}
+                  >
                     <label className="flex items-start gap-3 cursor-pointer group">
                       <div className="relative mt-0.5 shrink-0">
                         <input
                           type="checkbox"
                           checked={agreed}
-                          onChange={e => {
+                          onChange={(e) => {
                             setAgreed(e.target.checked);
-                            if (e.target.checked) setErrors(prev => { const n = { ...prev }; delete n.agreed; return n; });
+                            if (e.target.checked)
+                              setErrors((prev) => {
+                                const n = { ...prev };
+                                delete n.agreed;
+                                return n;
+                              });
                           }}
                           className="sr-only peer"
                           id="tc-agree"
                         />
                         <div className="w-5 h-5 rounded-md border-2 border-border/60 peer-checked:border-accent peer-checked:bg-accent flex items-center justify-center transition-all duration-200 group-hover:border-accent/60">
                           {agreed && (
-                            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12">
-                              <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              viewBox="0 0 12 12"
+                            >
+                              <path
+                                d="M2 6l3 3 5-5"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
                             </svg>
                           )}
                         </div>
@@ -310,12 +388,15 @@ const Contact = () => {
                         >
                           Privacy Policy
                         </Link>
-                        . I consent to Creativity Beyond Thoughts collecting and using my information to respond to this enquiry.
+                        . I consent to Creativity Beyond Thoughts collecting and
+                        using my information to respond to this enquiry.
                         <span className="text-accent ml-1">*</span>
                       </span>
                     </label>
                     {errors.agreed && (
-                      <p className="text-xs text-red-500 font-body mt-2 ml-8">{errors.agreed}</p>
+                      <p className="text-xs text-red-500 font-body mt-2 ml-8">
+                        {errors.agreed}
+                      </p>
                     )}
                   </div>
 
@@ -324,13 +405,18 @@ const Contact = () => {
                     type="submit"
                     className="w-full py-4 md:py-5 bg-foreground text-primary-foreground rounded-xl md:rounded-2xl font-display font-bold text-base md:text-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2 group disabled:opacity-50"
                   >
-                    <Send size={18} className="group-hover:translate-x-0.5 transition-transform" />
+                    <Send
+                      size={18}
+                      className="group-hover:translate-x-0.5 transition-transform"
+                    />
                     {siteData.contactPage.submitBtnText}
                   </button>
 
                   {/* WhatsApp fallback under submit */}
                   <div className="text-center pt-1">
-                    <p className="text-xs text-muted-foreground font-body mb-2">Or reach us instantly</p>
+                    <p className="text-xs text-muted-foreground font-body mb-2">
+                      Or reach us instantly
+                    </p>
                     <a
                       href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
                       target="_blank"
@@ -341,13 +427,11 @@ const Contact = () => {
                       WhatsApp us →
                     </a>
                   </div>
-
                 </form>
               )}
             </div>
           </div>
         </section>
-
       </main>
     </div>
   );
