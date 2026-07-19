@@ -1,209 +1,99 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { siteData } from "@/data/content";
 import LazyImage from "@/components/LazyImage";
 
 const WeddingSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
+  const { tag, title, highlight, description } = siteData.weddingSection;
 
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"]);
-
-  const { tag, title, highlight, description, link } = siteData.weddingSection;
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.7 }
+  };
 
   return (
-    <section
-      ref={containerRef}
-      className="relative overflow-hidden bg-black"
-      style={{ minHeight: "100vh" }}
-    >
-      {/* Parallax Background */}
-      <motion.div style={{ y }} className="absolute inset-0 z-0 scale-110">
+    <section className="relative overflow-hidden bg-black min-h-screen flex flex-col items-center justify-center px-6 py-28 text-center">
+      {/* Background Image & Stronger High-Contrast Overlays */}
+      <div className="absolute inset-0 z-0">
         <LazyImage
-          src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop"
+          src="https://i.postimg.cc/ydzhykyS/behance-img-48.jpg"
           alt="Wedding Cinematography"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-50"
         />
-        {/* Layered overlays for depth */}
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
-      </motion.div>
+        {/* Dark overall tint */}
+        <div className="absolute inset-0 bg-black/65" />
+        {/* Heavy vignette/radial gradient to darken the middle text area */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.4)_0%,rgba(0,0,0,0.85)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
+      </div>
 
+      {/* Main Content */}
+      <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto">
+        {/* Tag */}
+        <motion.div {...fadeInUp} className="mb-6 flex items-center gap-4">
+          <div className="h-px w-8 bg-white/30" />
+          <span className="text-[12px] tracking-[0.45em] uppercase text-red-500 font-semibold font-sans">
+            {tag}
+          </span>
+          <div className="h-px w-8 bg-white/30" />
+        </motion.div>
 
-
-      {/* Main content */}
-      <div className="relative z-20 flex min-h-screen flex-col items-center justify-center px-6 py-28 text-center">
-        <motion.div
-          style={{ y: textY }}
-          className="flex flex-col items-center"
+        {/* Title & Highlight */}
+        <motion.h2 
+          {...fadeInUp}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-white leading-[0.95] tracking-tight font-serif font-bold text-[clamp(48px,8vw,100px)] mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
         >
-          {/* Tag */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="mb-8 flex items-center gap-4"
+          {title} 
+          {/* Increased visibility on the italic portion using text-white instead of white/70 */}
+          <span className="block text-white italic font-normal mt-3 drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]">
+            {highlight}
+          </span>
+        </motion.h2>
+
+        {/* Description - Increased text opacity for legibility */}
+        <motion.p
+          {...fadeInUp}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mt-6 max-w-xl text-white/80 leading-relaxed font-normal font-sans text-[clamp(15px,1.4vw,17px)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+        >
+          {description}
+        </motion.p>
+
+        {/* CTA Button - Enhanced backdrop blur and subtle background fill for maximum visibility */}
+        <motion.div
+          {...fadeInUp}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="mt-12"
+        >
+          <a
+            href="https://www.cbtweddings.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center gap-4 rounded-full border border-white/40 bg-black/40 backdrop-blur-md px-10 py-4 overflow-hidden shadow-lg transition-all duration-300 hover:border-transparent"
           >
-            <div className="h-px w-10 bg-white/25" />
-            <span
-              className="text-[11px] tracking-[0.45em] uppercase"
-              style={{ color: "var(--accent, #e34a4a)", fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
-            >
-              {tag}
+            {/* Hover Background Transition */}
+            <span className="absolute inset-0 bg-red-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out" />
+            
+            {/* Button Text */}
+            <span className="relative z-10 text-white text-xs tracking-[0.35em] uppercase font-bold font-sans">
+              Explore
             </span>
-            <div className="h-px w-10 bg-white/25" />
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-white leading-[0.95] tracking-tight"
-            style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(52px, 9vw, 120px)",
-              fontWeight: 700,
-            }}
-          >
-            {title}
-          </motion.h2>
-
-          {/* Italic highlight on its own line */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.18 }}
-            className="relative"
-          >
-            <span
-              className="block text-white/70 italic leading-[1.05]"
-              style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: "clamp(52px, 9vw, 120px)",
-                fontWeight: 400,
-              }}
+            
+            {/* Button Icon */}
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 13 13"
+              fill="none"
+              className="relative z-10 text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             >
-              {highlight}
-            </span>
-            {/* Underline flourish */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="mx-auto mt-2 h-px origin-left bg-white/20"
-              style={{ width: "60%" }}
-            />
-          </motion.div>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="mx-auto mt-10 max-w-xl text-white/50 leading-relaxed font-light"
-            style={{ fontSize: "clamp(14px, 1.4vw, 17px)", fontFamily: "'Inter', sans-serif" }}
-          >
-            {description}
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.35 }}
-            className="mt-14"
-          >
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-5 overflow-hidden rounded-full px-10 py-4"
-              style={{ border: "1px solid rgba(255,255,255,0.18)" }}
-            >
-              {/* Hover fill */}
-              <motion.span
-                className="absolute inset-0 rounded-full"
-                style={{ background: "var(--accent, #e34a4a)" }}
-                initial={{ scale: 0, opacity: 0 }}
-                whileHover={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              />
-
-              <span
-                className="relative z-10 text-white text-xs tracking-[0.35em] uppercase transition-colors duration-300"
-                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
-              >
-                Explore
-              </span>
-
-              {/* Arrow */}
-              <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-all duration-300 group-hover:bg-white/20">
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 13 13"
-                  fill="none"
-                  className="text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                >
-                  <path
-                    d="M2 11L11 2M11 2H5M11 2V8"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </a>
-          </motion.div>
+              <path d="M2 11L11 2M11 2H5M11 2V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
         </motion.div>
       </div>
-
-      {/* Decorative corner text — bottom left */}
-      <div className="absolute bottom-10 left-10 z-20 hidden md:block select-none pointer-events-none">
-        <span
-          className="text-white/[0.06] font-black leading-none"
-          style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: "clamp(60px, 9vw, 110px)",
-            letterSpacing: "-0.04em",
-          }}
-        >
-          Wedding
-        </span>
-      </div>
-
-      {/* Decorative scroll cue */}
-      <motion.div
-        className="absolute bottom-10 right-10 z-20 hidden md:flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.6 }}
-      >
-        <div
-          className="h-10 w-px"
-          style={{
-            background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.25))",
-          }}
-        />
-        <span className="text-white/30 text-[9px] tracking-[0.3em] uppercase rotate-90 origin-center mt-1"
-          style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}>
-          Scroll
-        </span>
-      </motion.div>
     </section>
   );
 };

@@ -32,7 +32,7 @@ export const siteData = {
     { label: "About", to: "/about" },
     { label: "What We Do", to: "/work" },
     { label: "Services", to: "/services" },
-    { label: "Wedding", to: "https://www.instagram.com/creativitybeyondthoughts", external: true },
+    { label: "CBT Weddings", to: "https://www.cbtweddings.com/", external: true },
     { label: "Contact", to: "/contact" },
   ],
 
